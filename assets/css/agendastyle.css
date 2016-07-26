@@ -866,3 +866,35 @@ table.agenda-pro-table.agenisotope {
     height: 50%;
     width: 50%;
 }
+
+@media (max-width: 680px){
+  .agenisotope .col20{
+  width: 25%;
+}
+.agenisotope .col80{
+  width: 75%;
+}
+}
+
+@media only screen and (max-width: 480px){
+   table.agenda-table td { 
+padding-right: 10%;
+padding-left: 10%;
+   }
+   .agenisotope .col20{
+  width: 25%;
+}
+.agenisotope .col80{
+  width: 75%;
+}
+}
+.agenisotope .col20{
+  width: 16%;
+  font-size: 14px;
+}
+.agenisotope .col80{
+  width: 84%;
+}
+.agenisotope .iso-th {
+    background-color: #44BBFF;
+}

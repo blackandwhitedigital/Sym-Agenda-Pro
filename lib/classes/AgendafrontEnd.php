@@ -1,7 +1,7 @@
 <?php
 if( !class_exists( 'AgendafrontEnd' ) ) :
 
-	class AgendafrontEnd {
+    class AgendafrontEnd {
 
         function __construct(){
             add_action( 'wp_enqueue_scripts', array($this, 'agenda_front_end') );
@@ -10,54 +10,63 @@ if( !class_exists( 'AgendafrontEnd' ) ) :
 
         function custom_css(){
             $html = null;
+            
             global $Agenda;
             $settings = get_option($Agenda->options['settings']);
-            $pc = (isset($settings['primary_color']) ? ($settings['primary_color'] ? $settings['primary_color'] : '#0367bf' ) : '#0367bf');
-            $bc = (isset($settings['th_color']) ? ($settings['th_color'] ? $settings['th_color'] : '#3498DB' ) : '#3498DB');
-            $sc = (isset($settings['tr_color']) ? ($settings['tr_color'] ? $settings['tr_color'] : '#f2f2f2' ) : '#f2f2f2');
-            $td = (isset($settings['td_color']) ? ($settings['td_color'] ? $settings['td_color'] : '#fff' ) : '#fff');
+            $pc = (isset($settings['primary_color']) ? ($settings['primary_color'] ? $settings['primary_color'] : '#4b4b4b' ) : '#4b4b4b');
+            $lt = (isset($settings['ltext_color']) ? ($settings['ltext_color'] ? $settings['ltext_color'] : '#fff' ) : '#fff');
             $imgw = (isset($settings['imgw']) ? ($settings['imgw'] ? $settings['imgw'] : 150 ) : 150);
             $imgh = (isset($settings['imgh']) ? ($settings['imgh'] ? $settings['imgh'] : 150 ) : 150);
-            $br = (isset($settings['border_radius']) ? ($settings['border_radius'] ? $settings['border_radius'] : '0%' ) : '0%');
             $bp = (isset($settings['bullet_point']) ? ($settings['bullet_point'] ? $settings['bullet_point'] : 'circle' ) : 'circle');
-            $tc = (isset($settings['text_color']) ? ($settings['text_color'] ? $settings['text_color'] : '#4b5159' ) : '#4b5159');
-            $ts = (isset($settings['text_size']) ? ($settings['text_size'] ? $settings['text_size'] : '14px' ) : '14px');
-            $ta = (isset($settings['text_align']) ? ($settings['text_align'] ? $settings['text_align'] : 'left' ) : 'left');
-            
-            
+             /* heading setting layout1*/
+            $tc = (isset($settings['heading_color']) ? ($settings['heading_color'] ? $settings['heading_color'] : '#4a4a4a' ) : '#4a4a4a');
+            $ts = (isset($settings['heading_size']) ? ($settings['heading_size'] ? $settings['heading_size'] : '15px' ) : '15px');
+            $ta = (isset($settings['heading_align']) ? ($settings['heading_align'] ? $settings['heading_align'] : 'none' ) : 'none');
+            $bc = (isset($settings['table_color']) ? ($settings['table_color'] ? $settings['table_color'] : '') : '');
+            /* speaker setting layout1*/
+            $sc = (isset($settings['speaker_color']) ? ($settings['speaker_color'] ? $settings['speaker_color'] : '' ) : '');
+            $ss = (isset($settings['speaker_size']) ? ($settings['speaker_size'] ? $settings['speaker_size'] : '' ) : '');
+            $sa = (isset($settings['speaker_align']) ? ($settings['speaker_align'] ? $settings['speaker_align'] : 'none' ) : 'none');
+           
+             /* description setting layout1*/
+            $ddc = (isset($settings['descr_color']) ? ($settings['descr_color'] ? $settings['descr_color'] : '' ) : '');
+            $dds = (isset($settings['descr_size']) ? ($settings['descr_size'] ? $settings['descr_size'] : '' ) : '');
+            $dda = (isset($settings['descr_align']) ? ($settings['descr_align'] ? $settings['descr_align'] : 'none' ) : 'none');
+           
+
             $html .= "<style type='text/css'>";
-            $html .= 'event-content a,.contact-info li.event_date, .contact-info li.location, .contact-info .event_date, .contact-info .location ,.agenda .short-desc, .agenda .agenda-isotope .agenda-content, .agenda .button-group .selected, .agenda .layout1 .agenda-content, .agenda .agenda-social a, .agenda .agenda-social li a.fa {';
-                $html .= 'background: '.$pc;
+            $html .= '.agenda-pro-table.agenisotope tr.leisure-isotope,.agenda-pro-table tr.leisure-row,.roomNo,.agenda-content,.agenda .short-desc, .agenda .agenda-isotope .agenda-content, .agenda .button-group .selected, .agenda .layout1 .agenda-content, .agenda .agenda-social a, .agenda .agenda-social li a.fa {';
+            $html .= 'background: '.$pc.'!important';
             $html .= '}';
-            $html .= '.date .day {';
-                $html .= 'border-bottom:5px solid '.$pc;
+            $html .= '.leisure-isotope .ses-title,.agenda-pro-table .leisure-row th,.agenda-pro-table tr.leisure-row,.agenda-pro-table.agenisotope tr.leisure-isotope{';
+            $html .= 'color: '.$lt;
             $html .= '}';
-            $html .= '.event-wrapper .location, .event-wrapper .event_date,.agenda .layout1 .single-team-area h3{';
-                $html .= 'color: '.$pc.'!important';
+            $html .= '.agenda-pro-table tr:nth-child(odd),.agenda-pro-table.agenisotope tr:nth-child(odd){';
+            $html .= 'background: '.$bc;
             $html .= '}';
-            $html .= 'table.agenda-table tr th {';
-                $html .= 'background: '.$bc;
+            
+            /* speaker setting layout1*/
+            $html .='.speaker-text,.speaker-org,.speaker-role{';
+            $html .= 'color: '.$sc.'!important;';
+            $html .= 'font-size: '.$ss.'!important;';
+            $html .= 'text-align: '.$sa.'!important;';
             $html .= '}';
-            $html .= 'table.agenda-table>tbody>tr:nth-child(odd)>td  {';
-                $html .= 'background: '.$sc.'!important';
+            /* speaker setting layout1 */
+            /* description setting layout1*/
+            $html .='.session_desc{';
+            $html .= 'color: '.$ddc.'!important;';
+            $html .= 'font-size: '.$dds.'!important;';
+            $html .= 'text-align: '.$dda.'!important;';
             $html .= '}';
-            $html .= 'table.agenda-table>tbody>tr:nth-child(even)>td {';
-                $html .= 'background: '.$td.'!important';
-            $html .= '}';
-            $html .= '.session_img{';
-                $html .= 'width: '.$imgw.'px!important;';
-                $html .= 'height: '.$imgh.'px!important;';
-                $html .= 'border-radius: '.$br.'!important';
-            $html .= '}';
-            $html .= 'td.session_desc ul li{';
-                $html .= 'list-style: '.$bp.'!important;';
-            $html .= '}';
-            $html .='.table-text{';
+            /* description setting layout1 */
+            $html .= '.agenda-pro-table .ses-title{';
             $html .= 'color: '.$tc.'!important;';
             $html .= 'font-size: '.$ts.'!important;';
-            $html .= 'text-align: '.$ta.'!important';
+            $html .= 'margin: '.$ta.'!important';
             $html .= '}';
-            
+            $html .= '.session_desc li,.entry-content ul, .entry-summary ul, .comment-content ul, .entry-content ol, .entry-summary ol, .comment-content ol{';
+            $html .= 'list-style-type: '.$bp.'!important;';
+            $html .= '}';
             
 
             $html .= (isset($settings['custom_css']) ? ($settings['custom_css'] ? "{$settings['custom_css']}" : null) : null );
@@ -66,7 +75,7 @@ if( !class_exists( 'AgendafrontEnd' ) ) :
              echo $html;
         }
 
-	function agenda_front_end(){
+    function agenda_front_end(){
             global $Agenda;
             wp_enqueue_style( 'agenda-fontawsome', $Agenda->assetsUrl .'css/font-awesome/css/font-awesome.min.css' );
             wp_enqueue_style( 'agendastyle', $Agenda->assetsUrl . 'css/agendastyle.css' );
@@ -75,5 +84,5 @@ if( !class_exists( 'AgendafrontEnd' ) ) :
             wp_enqueue_script( 'tpl-team-front-end', $Agenda->assetsUrl . 'js/front-end.js', null, null, true);
         }
 
-	}
+    }
 endif;
