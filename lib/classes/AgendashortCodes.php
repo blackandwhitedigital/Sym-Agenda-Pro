@@ -230,7 +230,7 @@ if (!class_exists('AgendashortCodes')):
                 $post = $wpdb->prefix . 'posts';
                 $speakerlink = "SELECT ID FROM $post where ID=$speaker_id";
                 $pagepostslink = $wpdb->get_results($speakerlink, OBJECT);
-                $postid = $pagepostslink[0]->ID;
+                //$postid = $pagepostslink[0]->ID;
 
                 $post_speaker = get_post($postid);
                 $ppLink = get_post_permalink($postid);
@@ -245,7 +245,9 @@ if (!class_exists('AgendashortCodes')):
                 if ($leisure==0) {
                     $html .= '<td>';
                     $html .= "<span class='ses-title'>{$session_title}</span><a id='speakertoggle'><span class='session_toggle'>";
+                    if($session_desc){
                     $html .= "<a class='flip-icons plusimg".$id."' id='".$id."' onClick='fadeinFunction($id)'><div  id='flip-sec'><i class='fa fa-plus'></i></div></a>";
+                    }
 
                     $html .= "<a class='flip-icon minusimg".$id."' id='".$id."' onClick='fadeoutFunction($id)' ><div  id='flip-sec'><i class='fa fa-minus'></i></div></a></span></a><br>";
                     $html .= "<div class='agenda-spek-img ".$id."'>";
@@ -253,9 +255,13 @@ if (!class_exists('AgendashortCodes')):
                     $html .= "</div></div>";
 
                     if (!empty($session_speaker)) {
-                        $html .= "<p><a href='".$ppLink."' class='speaker-text'>{$session_speaker}</a>, <span class='speaker-role'>{$session_speakerrole}</span>, <span class='speaker-org'>{$session_speakerorg}</span>
-                        <a onclick='event_show(" . $postid . ")'' id='speakerinfo'><span class='session_speakerimg'><i class='fa fa-user' aria-hidden='true'></i></span></a></p>";
+                        $html .= "<p><a href='".$ppLink."' class='speaker-text'>{$session_speaker}</a>, <span class='speaker-role'>{$session_speakerrole}</span>, <span class='speaker-org'>{$session_speakerorg}</span>";
+                    $return = $wpdb->get_row( "SELECT ID FROM wp_posts WHERE post_title = '" . $session_speaker . "' && post_status = 'publish' && post_type = 'speaker' ", 'ARRAY_N' );
 
+                    if( !empty($return) ) {
+                        $postid = $return;
+                        $html .= "<a onclick='event_show(" . $postid . ")'' id='speakerinfo'><span class='session_speakerimg'><i class='fa fa-user' aria-hidden='true'></i></span></a></p>";
+                    } 
                     }
                     $html .= '</td>';
                 } else {
@@ -331,7 +337,7 @@ if (!class_exists('AgendashortCodes')):
                 $post = $wpdb->prefix . 'posts';
                 $speakerlink = "SELECT ID FROM $post where ID=$speaker_id";
                 $pagepostslink = $wpdb->get_results($speakerlink, OBJECT);
-                $postid = $pagepostslink[0]->ID;
+                //$postid = $pagepostslink[0]->ID;
 
                 $post_speaker = get_post($postid);
                 $ppLink = get_post_permalink($postid);
@@ -346,7 +352,9 @@ if (!class_exists('AgendashortCodes')):
                 if ($leisure==0) {
                     $html .= '<td>';
                     $html .= "<span class='ses-title'>{$session_title}</span><a id='speakertoggle'><span class='session_toggle'>";
+                    if($session_desc){
                     $html .= "<a class='flip-icons plusimg".$id."' id='".$id."' onClick='fadeinFunction($id)'><div  id='flip-sec'><i class='fa fa-plus'></i></div></a>";
+                    }
 
                     $html .= "<a class='flip-icon minusimg".$id."' id='".$id."' onClick='fadeoutFunction($id)' ><div  id='flip-sec'><i class='fa fa-minus'></i></div></a></span></a><br>";
                     $html .= "<div class='agenda-spek-img ".$id."'>";
@@ -354,8 +362,14 @@ if (!class_exists('AgendashortCodes')):
                     $html .= "</div></div>";
 
                     if (!empty($session_speaker)) {
-                        $html .= "<p><a href='".$ppLink."' class='speaker-text'>{$session_speaker}</a>, <span class='speaker-role'>{$session_speakerrole}</span>, <span class='speaker-org'>{$session_speakerorg}</span>
-                        <a onclick='event_show(" . $postid . ")'' id='speakerinfo'><span class='session_speakerimg'><i class='fa fa-user' aria-hidden='true'></i></span></a></p>";
+                        $html .= "<p><a href='".$ppLink."' class='speaker-text'>{$session_speaker}</a>, <span class='speaker-role'>{$session_speakerrole}</span>, <span class='speaker-org'>{$session_speakerorg}</span>";
+
+                        $return = $wpdb->get_row( "SELECT ID FROM wp_posts WHERE post_title = '" . $session_speaker . "' && post_status = 'publish' && post_type = 'speaker' ", 'ARRAY_N' );
+
+                        if( !empty($return) ) {
+                            $return = $postid;
+                            $html .= "<a onclick='event_show(" . $postid . ")'' id='speakerinfo'><span class='session_speakerimg'><i class='fa fa-user' aria-hidden='true'></i></span></a></p>";
+                        } 
 
                     }
                     $html .= '</td>';

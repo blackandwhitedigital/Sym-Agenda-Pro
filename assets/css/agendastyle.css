@@ -672,14 +672,6 @@ font-weight: 600;
     z-index: 999;
     vertical-align: middle;
         }
-div#popupContact {
-    position:absolute;
-    left:50%;
-    top:50%;
-    margin-left:-202px;
-    margin-top:-202px;
-    font-family:'Raleway',sans-serif
-  }
 
   #textm {
     width:100%;
@@ -807,6 +799,7 @@ table.agenda-pro-table {
 #popupContact #namepopup{
   font-size: 22px;
   color: #1a1a1a;
+  margin-bottom: 5px;
 }
 #desigpopup,#orgpopup,#biopopup,.agenda .layout1 .single-team-area h3{
   font-size: 14px;
@@ -814,15 +807,6 @@ table.agenda-pro-table {
   display: inline-block;
 }
 
-.popup div#popupContact {
-    font-family: "Raleway",sans-serif;
-    left: 43%;
-    margin-left: -260px;
-    margin-top: -260px;
-    position: absolute;
-    top: 50%;
-    width:800px;
-}
 #speakerinfo{
   margin-left: 5px;
 }
@@ -898,3 +882,32 @@ padding-left: 10%;
 .agenisotope .iso-th {
     background-color: #44BBFF;
 }
+
+/* remove styles from styles.css 
+.popup div#popupContact {
+    font-family: "Raleway",sans-serif;
+    left: 43%;
+    margin-left: -260px;
+    margin-top: -260px;
+    position: absolute;
+    top: 50%;
+    width:800px;
+}
+
+div#popupContact {
+    position:absolute;
+    left:50%;
+    top:50%;
+    margin-left:-202px;
+    margin-top:-202px;
+    font-family:'Raleway',sans-serif
+  }
+
+  */
+  .popup div#popupContact{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+}
+.m-bottom20{margin-bottom: 20px;}
