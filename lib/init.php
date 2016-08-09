@@ -1,6 +1,6 @@
 <?php
-
-class Agenda
+require ('Wp_License_Manager_API.php');
+class Agenda extends Wp_License_Manager_API
 {
     public $options;
 
@@ -24,7 +24,18 @@ class Agenda
         $this->templatePath     = $this->incPath . '/template/';
 
         $this->assetsUrl        = AGENDA_PLUGIN_URL  . '/assets/';
-        $this->TPLloadClass( $this->classesPath );
+        $options = get_option('agenda-license-settings' );
+        $seturl = new Wp_License_Manager_API();
+        $seturl->call_api('info',array(
+                    
+                    'email' => $options['email'],
+                    'license_key' => $options['license_key'],
+                    'request' => 'activation',
+                    'product_id' => 'Symposium Agenda Pro',
+                    'instance' => uniqid(),
+                    'platform' => home_url(),          
+                    'software_version' => '0.1'
+                ),$this->classesPath );
 
         $this->defaultSettings = array(
             'primary_color' => '#0367bf',
