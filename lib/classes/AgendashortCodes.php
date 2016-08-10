@@ -34,7 +34,7 @@ if (!class_exists('AgendashortCodes')):
             if (!in_array($atts['col'], $col_A)) {
                 $atts['col'] = 3;
             }
-            if (!in_array($atts['layout'], array(1, 'isotope'))) {
+            if (!in_array($atts['layout'], array(1, '2'))) {
                 $atts['layout'] = 1;
             }
 
@@ -59,10 +59,10 @@ if (!class_exists('AgendashortCodes')):
 
             if ($agendaQuery->have_posts()) {
                 $html .= '<div class="container-fluid agenda">';
-                if ($atts['layout'] == 'isotope') {
+                if ($atts['layout'] == '2') {
                     $html .= '<div class="agenda-isotope">';
                 }
-                if ($atts['layout'] != 'isotope') {
+                if ($atts['layout'] != '2') {
                     $html .= '<div class="row layout' . $atts['layout'] . '">';
                 }
                 while ($agendaQuery->have_posts()) : $agendaQuery->the_post();
@@ -121,7 +121,7 @@ if (!class_exists('AgendashortCodes')):
 
                     //$sLink = unserialize(get_post_meta( get_the_ID(), 'social' , true));
 
-                    if ($atts['layout'] != 'isotope') {
+                    if ($atts['layout'] != '2') {
                         $html .= "<div class='tlp-col-lg-12 tlp-col-md-12 tlp-col-sm-12 tlp-col-xs-12 tlp-equal-height'>";
                     }
                     switch ($atts['layout']) {
@@ -129,7 +129,7 @@ if (!class_exists('AgendashortCodes')):
                             $html .= $this->layoutOne($id, $title, $pLink, $imgSrc, $short_bio, $event_date, $event_d, $event_day, $event_month, $location, $pageposts);
                             break;
 
-                        case 'isotope':
+                        case '2':
                             $html .= $this->layoutIsotope($id, $title, $pLink, $imgSrc, $short_bio, $event_date, $location, $pageposts, $grid);
                             break;
 
@@ -137,18 +137,18 @@ if (!class_exists('AgendashortCodes')):
                             # code...
                             break;
                     }
-                    if ($atts['layout'] != 'isotope') {
+                    if ($atts['layout'] != '2') {
                         $html .= '</div>'; //end col
 
                     }
 
                 endwhile;
-                if ($atts['layout'] != 'isotope') {
+                if ($atts['layout'] != '2') {
                     $html .= '</div>'; // End row
                 }
                 wp_reset_postdata();
                 // end row
-                if ($atts['layout'] == 'isotope') {
+                if ($atts['layout'] == '2') {
                     $html .= '</div>'; // end tlp-team-isotope
                 }
                 $html .= '</div>'; // end container
