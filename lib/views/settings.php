@@ -133,11 +133,11 @@ $settings = get_option($Agenda->options['settings']);
 
     <div class="tlp-help">
         <p style="font-weight: bold"><?php _e('Short Code', AGENDA_SLUG );?> :</p>
-        <code>[agenda col="1" eventid="123" orderby="title" order="DESC" layout="isotope"]</code><br>
+        <code>[agenda col="1" eventid="123" orderby="time" order="DESC" layout="2"]</code><br>
         <p><?php _e('eventid = Event ID , which you want to show ', AGENDA_SLUG );?></p>
         <p><?php _e('orderby = title,menu_order', AGENDA_SLUG );?></p>
         <p><?php _e('ordr = ASC, DESC', AGENDA_SLUG );?></p>
-        <p><?php _e('layout = 1,isotope', AGENDA_SLUG );?></p>
+        <p><?php _e('layout = 1,2', AGENDA_SLUG );?></p>
         
     </div>
 
