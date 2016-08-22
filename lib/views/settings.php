@@ -155,7 +155,7 @@ $settings = get_option($Agenda->options['settings']);
                         <td class="">
                             <select name="bullet_point" id="bullet_point" type="text"
                                     value="<?php echo(isset($settings['bullet_point']) ? ($settings['bullet_point'] ? $settings['bullet_point'] : 'circle') : 'circle'); ?>">
-                                <option value="none">none</option>
+                                <option value="none">select</option>
                                 <option value="circle">circle</option>
                                 <option value="square">square</option>
                                 <option value="disc">disc</option>
