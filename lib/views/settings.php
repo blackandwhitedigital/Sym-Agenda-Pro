@@ -63,19 +63,34 @@ $settings = get_option($Agenda->options['settings']);
                      <tr>
                         <th scope="row"><label for="text-color"><?php _e('Text Color',SPEAKER_SLUG);?></label></th>
                         <td class="">
-                            <div class="settingCss">
+                            <!-- <div class="settingCss">
                                 <span>Session Title</span>
                                 <span>Description</span>
                                 <span>Session Speaker</span>
                                 <span>Speaker Role</span>
                                 <span>Speaker Organisation</span>
-                            </div>
+                            </div> -->
                             <span style="display:block;">
-                                <input name="heading_color" id="text_color" type="text" value="<?php echo (isset($settings['heading_color']) ? ($settings['heading_color'] ? $settings['heading_color'] : '#000') : '#000'); ?>" class="tlp-color">
-                                <input name="descr_color" id="descr_color" type="text" value="<?php echo (isset($settings['descr_color']) ? ($settings['descr_color'] ? $settings['descr_color'] : '') : ''); ?>" class="tlp-color">
-                                <input name="speaker_color" id="speaker_color" type="text" value="<?php echo (isset($settings['speaker_color']) ? ($settings['speaker_color'] ? $settings['speaker_color'] : '') : ''); ?>" class="tlp-color">
-                                <input name="speaker_rolecolor" id="speaker_rolecolor" type="text" value="<?php echo (isset($settings['speaker_rolecolor']) ? ($settings['speaker_rolecolor'] ? $settings['speaker_rolecolor'] : '') : ''); ?>" class="tlp-color">
-                                <input name="speaker_orgcolor" id="speaker_orgcolor" type="text" value="<?php echo (isset($settings['speaker_orgcolor']) ? ($settings['speaker_orgcolor'] ? $settings['speaker_orgcolor'] : '') : ''); ?>" class="tlp-color">
+                                <div class="textColor st">
+                                    <span class="Title">Session Title</span>
+                                    <input name="heading_color" id="text_color" type="text" value="<?php echo (isset($settings['heading_color']) ? ($settings['heading_color'] ? $settings['heading_color'] : '#000') : '#000'); ?>" class="tlp-color">
+                                </div>
+                                <div class="textColor des">
+                                    <span class="Title">Description</span>
+                                    <input name="descr_color" id="descr_color" type="text" value="<?php echo (isset($settings['descr_color']) ? ($settings['descr_color'] ? $settings['descr_color'] : '') : ''); ?>" class="tlp-color">
+                                </div>
+                                <div class="textColor sp">
+                                    <span class="Title">Session Speaker</span>
+                                    <input name="speaker_color" id="speaker_color" type="text" value="<?php echo (isset($settings['speaker_color']) ? ($settings['speaker_color'] ? $settings['speaker_color'] : '') : ''); ?>" class="tlp-color">
+                                </div>
+                                <div class="textColor sr">
+                                    <span class="Title">Speaker Role</span>
+                                    <input name="speaker_rolecolor" id="speaker_rolecolor" type="text" value="<?php echo (isset($settings['speaker_rolecolor']) ? ($settings['speaker_rolecolor'] ? $settings['speaker_rolecolor'] : '') : ''); ?>" class="tlp-color">
+                                </div>
+                                <div class="textColor so">
+                                    <span class="Title">Speaker Organisation</span>
+                                    <input name="speaker_orgcolor" id="speaker_orgcolor" type="text" value="<?php echo (isset($settings['speaker_orgcolor']) ? ($settings['speaker_orgcolor'] ? $settings['speaker_orgcolor'] : '') : ''); ?>" class="tlp-color">
+                                </div>
                             </span>
                         </td>
                     </tr>
@@ -153,7 +168,7 @@ $settings = get_option($Agenda->options['settings']);
                         <th scope="row"><label
                                 for="bullet_point"><?php _e('Styling Bullet Points', AGENDA_SLUG); ?></label></th>
                         <td class="">
-                            <select name="bullet_point" id="bullet_point" type="text"
+                           <select name="bullet_point" id="bullet_point" type="text"
                                     value="<?php echo(isset($settings['bullet_point']) ? ($settings['bullet_point'] ? $settings['bullet_point'] : 'circle') : 'circle'); ?>">
                                 <option value="none">select</option>
                                 <option value="circle">circle</option>

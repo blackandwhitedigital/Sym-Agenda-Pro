@@ -113,3 +113,22 @@
 #adminmenu li.menu-top:hover .wp-menu-image img, #adminmenu li.wp-has-current-submenu .wp-menu-image img, #adminmenu .wp-menu-image img{
     width: 20px;
 }
+.textColor{width: 18%; float: left;}
+.textColor.so{width: 23%;}
+.textColor .wp-picker-container{margin-top: 10px}
+#heading_size, 
+#descr_size,
+#speaker_size,
+#speaker_orgsize{
+    width: 14%;
+    margin-right: 20px;
+}
+#speaker_rolesize{margin-right: 23px; width: 14.5%;}
+#speaker_size{margin-right: 25px}
+.asmin-color-three select{width: 14%;}
+#textstylehead,
+#textstyledesg,
+#heading_align,
+#descr_align{margin-right: 20px;}
+#textstylerole,
+#textstylespeaker{margin-right: 25px;}
