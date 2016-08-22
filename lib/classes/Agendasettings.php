@@ -61,6 +61,7 @@ class Agendasettings
     function agenda_menu_register() {
         global $Agenda;
         $page = add_submenu_page( 'edit.php?post_type=agenda', __('Agenda Settings', AGENDA_SLUG), __('Settings', AGENDA_SLUG), 'administrator', 'Agenda_settings', array($this, 'Agenda_settings') );
+        $about = add_submenu_page('edit.php?post_type=agenda', __('Getting Started', AGENDA_SLUG), __('Getting Started', AGENDA_SLUG), 'administrator', 'getting_started', array($this, 'donation'));
 
         add_action('admin_print_styles-' . $page, array( $this,'agenda_style'));
         add_action('admin_print_scripts-'. $page, array( $this,'agenda_script'));
@@ -98,6 +99,15 @@ class Agendasettings
     function Agenda_settings(){
         global $Agenda;
         $Agenda->render('settings');
+    }
+
+    /**
+     * Render donation page
+     */
+    function donation()
+    {
+        global $Agenda;
+        $Agenda->render('about');
     }
 
     /**

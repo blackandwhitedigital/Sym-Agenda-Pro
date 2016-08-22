@@ -23,15 +23,29 @@ if( !class_exists( 'AgendafrontEnd' ) ) :
             $ts = (isset($settings['heading_size']) ? ($settings['heading_size'] ? $settings['heading_size'] : '15px' ) : '15px');
             $ta = (isset($settings['heading_align']) ? ($settings['heading_align'] ? $settings['heading_align'] : 'none' ) : 'none');
             $bc = (isset($settings['table_color']) ? ($settings['table_color'] ? $settings['table_color'] : '') : '');
+            $sw = (isset($settings['textstylehead']) ? ($settings['textstylehead'] ? $settings['textstylehead'] : 'normal' ) : 'normal');
             /* speaker setting layout1*/
             $sc = (isset($settings['speaker_color']) ? ($settings['speaker_color'] ? $settings['speaker_color'] : '' ) : '');
             $ss = (isset($settings['speaker_size']) ? ($settings['speaker_size'] ? $settings['speaker_size'] : '' ) : '');
             $sa = (isset($settings['speaker_align']) ? ($settings['speaker_align'] ? $settings['speaker_align'] : 'none' ) : 'none');
+            $sta = (isset($settings['textstylespeaker']) ? ($settings['textstylespeaker'] ? $settings['textstylespeaker'] : 'normal' ) : 'normal');
+
+            /* speaker role setting layout1*/
+            $src = (isset($settings['speaker_rolecolor']) ? ($settings['speaker_rolecolor'] ? $settings['speaker_rolecolor'] : '' ) : '');
+            $srs = (isset($settings['speaker_rolesize']) ? ($settings['speaker_rolesize'] ? $settings['speaker_rolesize'] : '' ) : '');
+            $sr = (isset($settings['textstylerole']) ? ($settings['textstylerole'] ? $settings['textstylerole'] : 'normal' ) : 'normal');
+
+            /* speaker organisation setting layout1*/
+            $sorc = (isset($settings['speaker_orgcolor']) ? ($settings['speaker_orgcolor'] ? $settings['speaker_orgcolor'] : '' ) : '');
+            $sors = (isset($settings['speaker_orgsize']) ? ($settings['speaker_orgsize'] ? $settings['speaker_orgsize'] : '' ) : '');
+            $soa = (isset($settings['textstyleorg']) ? ($settings['textstyleorg'] ? $settings['textstyleorg'] : 'normal' ) : 'normal');
+
            
              /* description setting layout1*/
             $ddc = (isset($settings['descr_color']) ? ($settings['descr_color'] ? $settings['descr_color'] : '' ) : '');
             $dds = (isset($settings['descr_size']) ? ($settings['descr_size'] ? $settings['descr_size'] : '' ) : '');
             $dda = (isset($settings['descr_align']) ? ($settings['descr_align'] ? $settings['descr_align'] : 'none' ) : 'none');
+            $ssd = (isset($settings['textstyledesg']) ? ($settings['textstyledesg'] ? $settings['textstyledesg'] : 'normal' ) : 'normal');
            
 
             $html .= "<style type='text/css'>";
@@ -46,12 +60,38 @@ if( !class_exists( 'AgendafrontEnd' ) ) :
             $html .= '}';
             
             /* speaker setting layout1*/
-            $html .='.speaker-text,.speaker-org,.speaker-role{';
+            $html .='.speaker-text{';
             $html .= 'color: '.$sc.'!important;';
             $html .= 'font-size: '.$ss.'!important;';
             $html .= 'text-align: '.$sa.'!important;';
+            $html .= 'font-weight: '.$sta.'!important;';
+            $html .= 'font-style: '.$sta.'!important;';
+            $html .= 'text-decoration: '.$sta.'!important';
             $html .= '}';
             /* speaker setting layout1 */
+
+            /* speaker role setting layout1*/
+            $html .='.speaker-role{';
+            $html .= 'color: '.$src.'!important;';
+            $html .= 'font-size: '.$srs.'!important;';
+            $html .= 'text-align: '.$sa.'!important;';
+            $html .= 'font-weight: '.$sr.'!important;';
+            $html .= 'font-style: '.$sr.'!important;';
+            $html .= 'text-decoration: '.$sr.'!important';
+            $html .= '}';
+            /* speaker role setting layout1 */
+
+            /* speaker org setting layout1*/
+            $html .='.speaker-org{';
+            $html .= 'color: '.$sorc.'!important;';
+            $html .= 'font-size: '.$sors.'!important;';
+            $html .= 'text-align: '.$sa.'!important;';
+            $html .= 'font-weight: '.$soa.'!important;';
+            $html .= 'font-style: '.$soa.'!important;';
+            $html .= 'text-decoration: '.$soa.'!important';
+            $html .= '}';
+            /* speaker org setting layout1 */
+            
             /* description setting layout1*/
             $html .='.session_desc{';
             $html .= 'color: '.$ddc.'!important;';
@@ -67,8 +107,17 @@ if( !class_exists( 'AgendafrontEnd' ) ) :
             $html .= '.session_desc li,.entry-content ul, .entry-summary ul, .comment-content ul, .entry-content ol, .entry-summary ol, .comment-content ol{';
             $html .= 'list-style-type: '.$bp.'!important;';
             $html .= '}';
+            $html .= '.title_style{';
+            $html .= 'font-weight: '.$sw.'!important;';
+            $html .= 'font-style: '.$sw.'!important;';
+            $html .= 'text-decoration: '.$sw.'!important';
+            $html .= '}';
+            $html .= '.desc_style{';
+            $html .= 'font-weight: '.$ssd.'!important;';
+            $html .= 'font-style: '.$ssd.'!important;';
+            $html .= 'text-decoration: '.$ssd.'!important';
+            $html .= '}';
             
-
             $html .= (isset($settings['custom_css']) ? ($settings['custom_css'] ? "{$settings['custom_css']}" : null) : null );
 
             $html .= "</style>";

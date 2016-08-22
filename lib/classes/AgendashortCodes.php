@@ -244,18 +244,33 @@ if (!class_exists('AgendashortCodes')):
                 $html .= "<th><span>" . $session_timefrom . "<br></span><a href='http://maps.apple.com/?q=".$location.",".$session_room."' target='blank'><span class='session_room'>".$session_room."</span></a></span></th>";
                 if ($leisure==0) {
                     $html .= '<td>';
-                    $html .= "<span class='ses-title'>{$session_title}</span><a id='speakertoggle'><span class='session_toggle'>";
+                    $html .= "<span class='ses-title title_style'>{$session_title}</span><a id='speakertoggle'><span class='session_toggle'>";
                     if($session_desc){
-                    $html .= "<a class='flip-icons plusimg".$id."' id='".$id."' onClick='fadeinFunction($id)'><div  id='flip-sec'><i class='fa fa-plus'></i></div></a>";
-                    }
-
                     $html .= "<a class='flip-icon minusimg".$id."' id='".$id."' onClick='fadeoutFunction($id)' ><div  id='flip-sec'><i class='fa fa-minus'></i></div></a></span></a><br>";
                     $html .= "<div class='agenda-spek-img ".$id."'>";
-                    $html .="<div class='session_desc'>".$session_desc;"</div>";
+                    $html .="<div class='session_desc desc_style'>".$session_desc."</div>";
                     $html .= "</div></div>";
+                    
+                    }
+
+                    $html .= "<a class='flip-icons plusimg".$id."' id='".$id."' onClick='fadeinFunction($id)'><div  id='flip-sec'><i class='fa fa-plus'></i></div></a>";
 
                     if (!empty($session_speaker)) {
-                        $html .= "<p><a href='".$ppLink."' class='speaker-text'>{$session_speaker}</a>, <span class='speaker-role'>{$session_speakerrole}</span>, <span class='speaker-org'>{$session_speakerorg}</span>";
+                         
+                        $html .= "<p ><span class='speaker-text'>{$session_speaker}</span>";
+                       
+                        if (strlen(trim($session_speakerrole))!=0){  
+                            $html .= ", <span class='speaker-role'>{$session_speakerrole}</span>";
+                        }else{ 
+                        }
+                        
+                        if (strlen(trim($session_speakerorg))!=0){
+                           
+                             $html .= ", <span class='speaker-org'>{$session_speakerorg}</span></p>";
+                       
+                        }else{
+                            
+                        }
                     $return = $wpdb->get_row( "SELECT ID FROM wp_posts WHERE post_title = '" . $session_speaker . "' && post_status = 'publish' && post_type = 'speaker' ", 'ARRAY_N' );
 
                     if( !empty($return) ) {
@@ -265,7 +280,7 @@ if (!class_exists('AgendashortCodes')):
                     }
                     $html .= '</td>';
                 } else {
-                    $html .= '<td>'. $session_title . '<br>' . $session_desc . '</td>';
+                    $html .= '<td><p class="title_style">'. $session_title . '</p><br>' . $session_desc . '</td>';
                 }
                 $html .= '</tr>';
 
@@ -351,18 +366,33 @@ if (!class_exists('AgendashortCodes')):
                 $html .= "<td class='col20'><span>". $session_timefrom . "<br></span><a href='http://maps.apple.com/?q=".$location.",".$session_room."' target='blank'><span class='session_room'>".$session_room."</span></a></span></td>";
                 if ($leisure==0) {
                     $html .= '<td>';
-                    $html .= "<span class='ses-title'>{$session_title}</span><a id='speakertoggle'><span class='session_toggle'>";
+                    $html .= "<span class='ses-title title_style'>{$session_title}</span><a id='speakertoggle'><span class='session_toggle'>";
+                    
                     if($session_desc){
-                    $html .= "<a class='flip-icons plusimg".$id."' id='".$id."' onClick='fadeinFunction($id)'><div  id='flip-sec'><i class='fa fa-plus'></i></div></a>";
-                    }
-
                     $html .= "<a class='flip-icon minusimg".$id."' id='".$id."' onClick='fadeoutFunction($id)' ><div  id='flip-sec'><i class='fa fa-minus'></i></div></a></span></a><br>";
                     $html .= "<div class='agenda-spek-img ".$id."'>";
-                    $html .="<div class='session_desc'>".$session_desc;"</div>";
+                    $html .="<div class='session_desc desc_style'>".$session_desc."</div>";
                     $html .= "</div></div>";
+                    
+                    }
+
+                    $html .= "<a class='flip-icons plusimg".$id."' id='".$id."' onClick='fadeinFunction($id)'><div  id='flip-sec'><i class='fa fa-plus'></i></div></a>";
 
                     if (!empty($session_speaker)) {
-                        $html .= "<p><a href='".$ppLink."' class='speaker-text'>{$session_speaker}</a>, <span class='speaker-role'>{$session_speakerrole}</span>, <span class='speaker-org'>{$session_speakerorg}</span>";
+                        $html .= "<p><span class='speaker-text'>{$session_speaker}</span>";
+                        
+                        if (strlen(trim($session_speakerrole))!=0){  
+                            $html .= ", <span class='speaker-role'>{$session_speakerrole}</span>";
+                        }else{ 
+                        }
+                        
+                        if (strlen(trim($session_speakerorg))!=0){
+                           
+                             $html .= ", <span class='speaker-org'>{$session_speakerorg}</span></p>";
+                       
+                        }else{
+                            
+                        }
 
                         $return = $wpdb->get_row( "SELECT ID FROM wp_posts WHERE post_title = '" . $session_speaker . "' && post_status = 'publish' && post_type = 'speaker' ", 'ARRAY_N' );
 
@@ -374,7 +404,7 @@ if (!class_exists('AgendashortCodes')):
                     }
                     $html .= '</td>';
                 } else {
-                    $html .= '<td>'. $session_title . '<br>' . $session_desc . '</td>';
+                    $html .= '<td><p class="title_style">'. $session_title . '</p><br>' . $session_desc . '</td>';
                 }
                 $html .= '</tr>';
 

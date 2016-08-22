@@ -195,8 +195,28 @@ if (!class_exists('AgendaPostSession')) {
                 ?>
                         <div class="tlp-field-holder">
                             <div class="tplp-label">
-                                <label for="session_speaker"><?php _e('Please add Speaker in Speaker Pro Plugin', AGENDA_SLUG); ?></label><br><br>
+                                <label for="session_speaker"><?php _e('Speaker', AGENDA_SLUG); ?>:</label>
                             </div>
+                            <div class="tlp-field">
+                                <input type="text" id="session_speaker" name="session_speaker" class="tlpfield" value="">
+                            </div>
+                        </div>
+                        <div class="tlp-field-holder">
+                            <div class="tplp-label">
+                                <label for="session_speaker"><?php _e('Speaker Role', AGENDA_SLUG); ?>:</label>
+                            </div>
+                            <div class="tlp-field">
+                                <input type="text" id="session_speakerrole" name="session_speakerrole" class="tlpfield" value="">
+                            </div>
+                        </div>
+                        <div class="tlp-field-holder">
+                             <div class="tplp-label">
+                                <label for="session_speaker"><?php _e('Speaker Organisation', AGENDA_SLUG); ?>:</label>
+                            </div>
+                            <div class="tlp-field">
+                                <input type="text" id="session_speakerorg" name="session_speakerorg" class="tlpfield" value="">
+                            </div>
+                           
                         </div>
                         <div class="tlp-field-holder">
                             <div class="tplp-label">
@@ -301,6 +321,9 @@ if (!class_exists('AgendaPostSession')) {
                                         'session_timefrom'=>$_REQUEST['session_timefrom'],
                                         'session_timeto'=>$_REQUEST['session_timeto'],
                                         'session_desc'=>$_REQUEST['session_desc'],
+                                        'session_speaker'=>$_REQUEST['session_speaker'],
+                                        'session_speakerrole'=>$_REQUEST['session_speakerrole'],
+                                        'session_speakerorg'=>$_REQUEST['session_speakerorg'],
                                         'session_room'=>$_REQUEST['session_room'],
                                         'sort_order'=> $row,
                                         'post_id'=> $id,
