@@ -378,6 +378,7 @@
          * @return          array   The API response
          */
         public function call_api( $action, $params, $dir ) {
+            $options = get_option( $this->get_settings_field_name() );
             $array = [
             'request' => 'activation',
             'email' => $params['email'],
@@ -421,25 +422,18 @@
                 }
        
                 
-            }else{
+            }elseif($options['email'] != '' || $options['license_key'] != ''){
                 $msg = __( 'The Symposium Agenda Pro API License Key and Email is invalid, so the plugin is inactive! Please enter the correct API License Key and Email.');
                 $msg = sprintf( $msg, 'Symposium Agenda Pro' );
                 ?>
                 
-                <div class="update-nag" style="float:right;margin-right: 10%;
-    width: 73.5%;">
-               
+                <div class="update-nag" style="float:right;margin-right: 10%;width: 73.5%;">               
                         <p>
                             <?php echo $msg; ?>
                         </p>
-                        <p>
-                            <a href="<?php echo admin_url( 'options-general.php?page=' . $this->get_settings_page_slug() ); ?>">
-                                <?php _e( 'Complete the setup now.', $this->text_domain ); ?>
-                            </a>
-                        </p>
         
                 </div>
-                </div>
+                </div> 
                 <?php
                 //echo $msg;
             }

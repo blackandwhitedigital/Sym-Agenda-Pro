@@ -6,7 +6,7 @@ $settings = get_option($Agenda->options['settings']);
     <div id="upf-icon-edit-pages" class="icon32 icon32-posts-page"><br/></div>
     <h2 class="page-heading"><?php _e('Agenda Settings', AGENDA_SLUG); ?></h2>
     <div class="tlp-content-holder">
-        <div class="tch-left">
+        <div class="tch-left-setting">
             <form id="tlp-settings" onsubmit="agendaSettings(this); return false;">
 
                 <h3 class="content-heading"><?php _e('General settings', AGENDA_SLUG); ?></h3>
@@ -113,35 +113,40 @@ $settings = get_option($Agenda->options['settings']);
                             <span class="asmin-color-three" style="display:block;">
                                  <select name="textstylehead" id="textstylehead" type="text"
                                         value="<?php echo(isset($settings['textstylehead']) ? ($settings['textstylehead'] ? $settings['textstylehead'] : 'normal') : 'normal'); ?>">
-                                    <option value="normal">select</option>
+                                    <option value=<?php $settings = get_option($Agenda->options['settings']);
+                                    (isset($settings['textstylehead']) ? ($settings['textstylehead'] ? $settings['textstylehead'] : 'normal' ) : 'normal');?>><?php echo (isset($settings['textstylehead']) ? ($settings['textstylehead'] ? $settings['textstylehead'] : 'normal') : 'normal');?></option>
                                     <option value="bold">bold</option>
                                     <option value="italic">italic</option>
                                     <option value="underline">underline</option>
                                 </select>
                                 <select name="textstyledesg" id="textstyledesg" type="text"
                                         value="<?php echo(isset($settings['textstyledesg']) ? ($settings['textstyledesg'] ? $settings['textstyledesg'] : 'normal') : 'normal'); ?>">
-                                    <option value="normal">select</option>
+                                   <option value=<?php
+                                    (isset($settings['textstyledesg']) ? ($settings['textstyledesg'] ? $settings['textstyledesg'] : 'normal' ) : 'normal');?>><?php echo (isset($settings['textstyledesg']) ? ($settings['textstyledesg'] ? $settings['textstyledesg'] : 'normal') : 'normal');?></option>
                                     <option value="bold">bold</option>
                                     <option value="italic">italic</option>
                                     <option value="underline">underline</option>
                                 </select>
                                 <select name="textstylespeaker" id="textstylespeaker" type="text"
                                         value="<?php echo(isset($settings['textstylespeaker']) ? ($settings['textstylespeaker'] ? $settings['textstylespeaker'] : 'normal') : 'normal'); ?>">
-                                    <option value="normal">select</option>
+                                    <option value=<?php
+                                    (isset($settings['textstylespeaker']) ? ($settings['textstylespeaker'] ? $settings['textstylespeaker'] : 'normal' ) : 'normal');?>><?php echo (isset($settings['textstylespeaker']) ? ($settings['textstylespeaker'] ? $settings['textstylespeaker'] : 'normal') : 'normal');?></option>
                                     <option value="bold">bold</option>
                                     <option value="italic">italic</option>
                                     <option value="underline">underline</option>
                                 </select>
                                 <select name="textstylerole" id="textstylerole" type="text"
                                         value="<?php echo(isset($settings['textstylerole']) ? ($settings['textstylerole'] ? $settings['textstylerole'] : 'normal') : 'normal'); ?>">
-                                    <option value="normal">select</option>
+                                    <option value=<?php
+                                    (isset($settings['textstylerole']) ? ($settings['textstylerole'] ? $settings['textstylerole'] : 'normal' ) : 'normal');?>><?php echo (isset($settings['textstylerole']) ? ($settings['textstylerole'] ? $settings['textstylerole'] : 'normal') : 'normal');?></option>
                                     <option value="bold">bold</option>
                                     <option value="italic">italic</option>
                                     <option value="underline">underline</option>
                                 </select>
                                 <select name="textstyleorg" id="textstyleorg" type="text"
                                         value="<?php echo(isset($settings['textstyleorg']) ? ($settings['textstyleorg'] ? $settings['textstyleorg'] : 'normal') : 'normal'); ?>">
-                                    <option value="normal">select</option>
+                                    <option value=<?php
+                                    (isset($settings['textstyleorg']) ? ($settings['textstyleorg'] ? $settings['textstyleorg'] : 'normal' ) : 'normal');?>><?php echo (isset($settings['textstyleorg']) ? ($settings['textstyleorg'] ? $settings['textstyleorg'] : 'normal') : 'normal');?></option>
                                     <option value="bold">bold</option>
                                     <option value="italic">italic</option>
                                     <option value="underline">underline</option>
@@ -150,7 +155,7 @@ $settings = get_option($Agenda->options['settings']);
                         </td>
                     </tr>
 
-                    <tr>
+                    <!-- <tr>
                         <th scope="row"><label for="text-color"><?php _e('Text Align',SPEAKER_SLUG);?></label></th> 
                         <td>
                             <span class="asmin-color-three" style="display:block;">
@@ -159,7 +164,7 @@ $settings = get_option($Agenda->options['settings']);
                                 <input name="speaker_align" id="speaker_align" size="10" type="text" value="<?php echo (isset($settings['speaker_align']) ? ($settings['speaker_align'] ? $settings['speaker_align'] : 'none') : 'none'); ?>">
                             </span>  
                         </td>
-                    </tr>
+                    </tr> -->
 
                    
                     <!-- end-->
@@ -170,7 +175,9 @@ $settings = get_option($Agenda->options['settings']);
                         <td class="">
                            <select name="bullet_point" id="bullet_point" type="text"
                                     value="<?php echo(isset($settings['bullet_point']) ? ($settings['bullet_point'] ? $settings['bullet_point'] : 'circle') : 'circle'); ?>">
-                                <option value="none">select</option>
+                                <option value=<?php 
+                                (isset($settings['bullet_point']) ? ($settings['bullet_point'] ? $settings['bullet_point'] : 'none' ) : 'none');?>><?php echo (isset($settings['bullet_point']) ? ($settings['bullet_point'] ? $settings['bullet_point'] : 'none') : 'none');?></option>
+                                    <option value="none" <?php selected( $bullet_point, none ); ?>>none</option>
                                 <option value="circle">circle</option>
                                 <option value="square">square</option>
                                 <option value="disc">disc</option>

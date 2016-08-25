@@ -14,15 +14,15 @@ $settings = get_option($Agenda->options['settings']);
     <div class="tlp-help">
       <p style="font-weight: bold"><?php _e('Getting Started:', AGENDA_SLUG); ?></p>
         <h3>&nbsp;</h3>
-        <h3><strong>1. Adding Speakers</strong></h3>
-        <p>Click the “Add Speaker” link in the left hand menu.  Add information and save.</p>
+        <h3><strong>1. Adding Agendas</strong></h3>
+        <p>Click the “Add Agenda" link in the left hand menu.  Add information and save.</p>
         <h3>&nbsp;</h3>
         <h3>2. Display your Agenda in a Post or Page with a Shortcode</h3>
-        <p>To display your agenda you will need to add a &lsquo;shortcode&rsquo; to the page or post in the location where you want the speakers to show. This short code will look something like this:</p>
+        <p>To display your agenda you will need to add a &lsquo;shortcode&rsquo; to the page or post in the location where you want the agenda to show. This short code will look something like this:</p>
         <p>[agenda]</p>
         <p>This will give you a basic display. However, you can refine the shortcode using some additional options to control the final display. This is what your shortcode may look like once you have added these settings:</p>
         <p>[agenda orderby="time" layout="1"]</p>
-        <p>The shortcode contains a number of optional elements that allow you to control the appearance of the speakers section. These options are:</p>
+        <p>The shortcode contains a number of optional elements that allow you to control the appearance of the agendas section. These options are:</p>
         <ul>
           <li><strong>orderby</strong> = The order that sessions in the agenda display by, most people will use 'time' but you can order by 'speaker'</li>
           <li><strong>layout</strong> = the layout template you want to use.  At the moment you can choose from  “1” and "2"<br>
