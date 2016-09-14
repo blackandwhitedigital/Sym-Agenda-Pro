@@ -136,6 +136,13 @@ if (!class_exists('AgendaPostSession')) {
 
                     if ($agenda->have_posts()) {  
                     ?>
+                        <!-- <div class="tlp-field-holder">
+                            
+                                <input type="radio" name="speakerRadio" value="yes">Please select Speaker from Speaker Plugin</br>
+                                <input type="radio" name="speakerRadio" value="no">Please enter Speaker manually
+                            
+                        </div> -->
+
                         <div class="tlp-field-holder">
                             <div class="tplp-label">
                                 <label for="session_speaker"><?php _e('Speaker', AGENDA_SLUG); ?>:</label>
@@ -430,9 +437,8 @@ if (!class_exists('AgendaPostSession')) {
                 wp_enqueue_script( 'edit_function', $Agenda->assetsUrl. 'js/editquery.js', array( 'jquery' ) );
                 wp_localize_script( 'ajax-test', 'the_ajax_script', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
                 wp_enqueue_script( 'select_function', $Agenda->assetsUrl. 'js/selectbox.js', array( 'jquery' ) );
-                
-            
-       
+                wp_enqueue_script( 'select_radiobutton', 'http://code.jquery.com/jquery.min.js');
+                 
             }
         
     }
