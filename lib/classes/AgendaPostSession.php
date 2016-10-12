@@ -95,7 +95,7 @@ if (!class_exists('AgendaPostSession')) {
                 </table>
                 </div>
             <?php } ?>
-
+            <div id="inline_content">
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="tlp-field-holder">
                     <div class="tplp-label">
@@ -131,18 +131,23 @@ if (!class_exists('AgendaPostSession')) {
                 </div>
         
                 <?php 
-                    $argss= query_posts( array( 'post_type' => 'speaker') );
+                include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+ 
+                if ( (is_plugin_active( 'Sym-Profiles-Pro-master/speaker.php' ) ) ||  (is_plugin_active( 'Sym-Profiles-master/speaker.php' ) ) ){
+                    $argss= query_posts( array( 'post_type' => 'speaker', 'orderby' => 'title') );
                     $agenda= new WP_Query( $argss );
-
+                    
                     if ($agenda->have_posts()) {  
                     ?>
-                        <!-- <div class="tlp-field-holder">
+                    
+                        <div class="tlp-field-holder">
                             
-                                <input type="radio" name="speakerRadio" value="yes">Please select Speaker from Speaker Plugin</br>
-                                <input type="radio" name="speakerRadio" value="no">Please enter Speaker manually
+                                <input type="radio" name="speakerRadio" value="yes" class="speakerRadio">Please select Speaker from Speaker Plugin</br>
+                                <input type="radio" name="speakerRadio" value="no" class="speakerRadio">Please enter Speaker manually
                             
-                        </div> -->
+                        </div>
 
+                        <div class= "speakerlist">
                         <div class="tlp-field-holder">
                             <div class="tplp-label">
                                 <label for="session_speaker"><?php _e('Speaker', AGENDA_SLUG); ?>:</label>
@@ -150,7 +155,8 @@ if (!class_exists('AgendaPostSession')) {
                             <div class="tlp-field">                  
                                     <select name="session_speaker" class="speak_name" id="session_speaker" onchange ="displayVals()">
                                     <option value="0" class="speakerajax">Select Option</option>
-                                        <?php  while (have_posts()) : the_post();  
+                                        <?php  while (have_posts()) : the_post();
+                                        $sessionspeaker_name  =  get_the_title(); 
                                         $organisation = get_post_meta( get_the_ID(), 'organisation', true );
                                         $designation = get_post_meta( get_the_ID(), 'designation', true );
                                         $speaker_id= get_the_ID();
@@ -172,12 +178,40 @@ if (!class_exists('AgendaPostSession')) {
                                 <span class="name"></span>
                             </div>
                         </div>
-                        <input type="hidden" id="session_speakerrole" name="session_speakerrole" class="tlpfield" value="<?php $designation ?>">
-                                 <input type="hidden" id="speaker_id" name="speaker_id" class="tlpfield" value="<?php $speaker_id ?>">
+                        <input type="hidden" id="sessionspeaker_name" name="sessionspeaker_name" class="tlpfield" value="">
+                        <input type="hidden" id="session_speakerrole" name="session_speakerroles" class="tlpfield" value="">
+                        <input type="hidden" id="speaker_id" name="speaker_id" class="tlpfield" value="">
                         <input type="hidden" name="meta_image" id="meta_image" value="<?php if ( isset ( $prfx_stored_meta['meta_image'] ) ) echo $prfx_stored_meta['meta_image'][0]; ?>" />
-                        <input type="hidden" id="session_speakerorg" name="session_speakerorg" class="tlpfield" value="<?php $organisation ?>">
+                        <input type="hidden" id="session_speakerorg" name="session_speakerorgs" class="tlpfield" value="">
                               
-
+                </div>
+                <div class="speakmanual">
+                    <div class="tlp-field-holder">
+                            <div class="tplp-label">
+                                <label for="session_speaker"><?php _e('Speaker', AGENDA_SLUG); ?>:</label>
+                            </div>
+                            <div class="tlp-field">
+                                <input type="text" id="session_speaker" name="session_speaker" class="tlpfield" value="">
+                            </div>
+                        </div>
+                        <div class="tlp-field-holder">
+                            <div class="tplp-label">
+                                <label for="session_speaker"><?php _e('Speaker Role', AGENDA_SLUG); ?>:</label>
+                            </div>
+                            <div class="tlp-field">
+                                <input type="text" id="session_speakerrole" name="session_speakerrole" class="tlpfield" value="">
+                            </div>
+                        </div>
+                        <div class="tlp-field-holder">
+                             <div class="tplp-label">
+                                <label for="session_speaker"><?php _e('Speaker Organisation', AGENDA_SLUG); ?>:</label>
+                            </div>
+                            <div class="tlp-field">
+                                <input type="text" id="session_speakerorg" name="session_speakerorg" class="tlpfield" value="">
+                            </div>
+                           
+                        </div>
+                </div>
                 <div class="tlp-field-holder">
                     <div class="tplp-label">
                         <label for="session_room"><?php _e('Room/Location', AGENDA_SLUG); ?>:</label>
@@ -192,12 +226,16 @@ if (!class_exists('AgendaPostSession')) {
                 </div>
                 <div class="tlp-field-holder">
                     <input type="submit" value="Save" name="submitb" id="submitb">
-                    <input type='submit' name='update' value='Update' >
+                    <input type="submit" value="Save" name="submitbut" class="submitspeak" id="submitb">
+                    <input type='submit' name='updateb' value='Update'  id="updateb" >
+                    <input type='submit' name='updatebut' value='Update' id="updatebut" class="submitspeak">
                 </div>
                 <div id="update"></div>
             </form>
+            </div>
                 <?php
 
+            }
             }else{
                 ?>
                         <div class="tlp-field-holder">
@@ -242,7 +280,8 @@ if (!class_exists('AgendaPostSession')) {
                             <input type='submit' name='update' value='Update' >
                         </div>
                         <div id="update"></div>
-                </form>  
+                </form> 
+                </div> 
                 <?php  
             }
             }
@@ -267,7 +306,7 @@ if (!class_exists('AgendaPostSession')) {
                                     $test=(explode('**',$str,-1));
                                     $plink=(explode('**',$str,-1));                
                                     $date=(explode('**',$str,3));
-                                    $testino= $test[0];
+                                    $testino= $strr;
                                     $session_speakerrole=$_REQUEST['session_speakerrole'];
                                     $session_speakerorg=$_REQUEST['session_speakerorg'];
                                     $meta_image=$_POST[ 'meta_image' ];
@@ -297,10 +336,10 @@ if (!class_exists('AgendaPostSession')) {
                                         'session_timefrom'=>$_REQUEST['session_timefrom'],
                                         'session_timeto'=>$_REQUEST['session_timeto'],
                                         'session_desc'=>$_REQUEST['session_desc'],
-                                        'session_speaker'=>$testino,
+                                        'session_speaker'=>$_REQUEST['sessionspeaker_name'],
                                         'speaker_id'=>$_REQUEST['speaker_id'],
-                                        'session_speakerrole'=>$_REQUEST['session_speakerrole'],
-                                        'session_speakerorg'=>$_REQUEST['session_speakerorg'],
+                                        'session_speakerrole'=>$_REQUEST['session_speakerroles'],
+                                        'session_speakerorg'=>$_REQUEST['session_speakerorgs'],
                                         'session_room'=>$_REQUEST['session_room'],
                                         'session_orglogo'=>$_POST[ 'meta_image' ],
                                         'sort_order'=> $row,
@@ -337,11 +376,39 @@ if (!class_exists('AgendaPostSession')) {
                                         'eventname'=> $event,));
 
                                     $wpdb->query($sql);
+
+                                    $argss= query_posts( array( 'post_type' => 'speaker') );
+                                   $agenda= new WP_Query( $argss );
+                                   
+                                   if ($agenda->have_posts()) {
+
+                                       global $wpdb;
+                                       $table_name = $wpdb->prefix .  'posts' ;
+                                       $sql = $wpdb->insert($table_name,
+                                       array('post_title' => $_REQUEST['session_speaker'],
+                                           'post_type' => 'speaker'
+                                           ));
+                                       $wpdb->query($sql);
+                                       $user_id = $wpdb->insert_id;
+                                        //$user_id;
+                                       
+                                       if ( isset( $_REQUEST['session_speakerrole'] ) ) {
+                                       update_post_meta( $user_id, 'role', sanitize_text_field( $_REQUEST['session_speakerrole'] ) );
+                                        }
+                                        if ( isset( $_REQUEST['session_speakerorg'] ) ) {
+                                       update_post_meta( $user_id, 'organisation', sanitize_text_field( $_REQUEST['session_speakerorg'] ) );
+                                       }
+
+                                       /*$tablepost_name = $wpdb->prefix .  'postmeta' ;
+                                       $sql = $wpdb->insert($tablepost_name,
+                                       array('post_title' => $_REQUEST['session_speaker'],
+                                           ));*/
+                                   }
                                     
                             }
 
 
-                            if (isset($_REQUEST['update'])){
+                            if (isset($_REQUEST['updateb'])){
                                 $str = $_REQUEST['session_speaker'];
                                 $strr = $_REQUEST['session_speaker'];
                                 $test=(explode('**',$str,-2));
@@ -351,12 +418,53 @@ if (!class_exists('AgendaPostSession')) {
                                 }else{
                                     $row = 0;
                                 }
-                                $session_id=$_REQUEST['session_id'];
+                                $session_id=trim($_REQUEST['session_id']);
                                 $session_title=$_REQUEST['session_title'];
                                 $session_timefrom=$_REQUEST['session_timefrom'];
                                 $session_timeto=$_REQUEST['session_timeto'];
                                 $session_desc=$_REQUEST['session_desc'];
-                                $session_speaker=$test[0];
+                                $session_speaker=$_REQUEST['sessionspeaker_name'];
+                                $speaker_id=$_REQUEST['speaker_id'];
+                                $session_speakerrole=$_REQUEST['session_speakerroles'];
+                                $session_speakerorg=$_REQUEST['session_speakerorgs'];
+                                $session_room=$_REQUEST['session_room'];
+                                $session_orglogo=$_POST[ 'meta_image' ];
+
+                                global $wpdb;
+                                $table_update = $wpdb->prefix .  'session_info' ;
+                                
+                                $tddd=$wpdb->query("UPDATE $table_update SET 
+                                    session_title='$session_title', 
+                                    session_timefrom='$session_timefrom',
+                                    session_timeto='$session_timeto',
+                                    session_desc='$session_desc',
+                                    session_speaker='$session_speaker',
+                                    speaker_id = '$speaker_id',
+                                    session_speakerrole='$session_speakerrole',
+                                    session_speakerorg='$session_speakerorg',
+                                    session_room='$session_room',
+                                    session_orglogo='$session_orglogo',
+                                    sort_order = '$row'
+                                    WHERE id=$session_id");
+                                /*var_dump($tddd);
+                                exit();*/
+                        }
+                        if (isset($_REQUEST['updatebut'])){
+                                $str = $_REQUEST['session_speaker'];
+                                $strr = $_REQUEST['session_speaker'];
+                                $test=(explode('**',$str,-2));
+                                if(isset($_REQUEST['row']))
+                                {
+                                    $row = 1; 
+                                }else{
+                                    $row = 0;
+                                }
+                                $session_id=trim($_REQUEST['session_id']);
+                                $session_title=$_REQUEST['session_title'];
+                                $session_timefrom=$_REQUEST['session_timefrom'];
+                                $session_timeto=$_REQUEST['session_timeto'];
+                                $session_desc=$_REQUEST['session_desc'];
+                                $session_speaker=$_REQUEST['session_speaker'];
                                 $speaker_id=$_REQUEST['speaker_id'];
                                 $session_speakerrole=$_REQUEST['session_speakerrole'];
                                 $session_speakerorg=$_REQUEST['session_speakerorg'];
@@ -364,21 +472,26 @@ if (!class_exists('AgendaPostSession')) {
                                 $session_orglogo=$_POST[ 'meta_image' ];
 
                                 global $wpdb;
-                                $table_name = $wpdb->prefix .  'session_info' ;
-                                $wpdb->query($wpdb->prepare("UPDATE $table_name SET 
-                                    session_title=' $session_title', 
-                                    session_timefrom=' $session_timefrom',
-                                    session_timeto=' $session_timeto',
-                                    session_desc=' $session_desc',
-                                    session_speaker=' $session_speaker',
+                                $table_update = $wpdb->prefix .  'session_info' ;
+                                
+                                $tddd=$wpdb->query("UPDATE $table_update SET 
+                                    session_title='$session_title', 
+                                    session_timefrom='$session_timefrom',
+                                    session_timeto='$session_timeto',
+                                    session_desc='$session_desc',
+                                    session_speaker='$session_speaker',
                                     speaker_id = '$speaker_id',
-                                    session_speakerrole=' $session_speakerrole',
-                                    session_speakerorg=' $session_speakerorg',
-                                    session_room=' $session_room',
-                                    session_orglogo=' $session_orglogo',
+                                    session_speakerrole='$session_speakerrole',
+                                    session_speakerorg='$session_speakerorg',
+                                    session_room='$session_room',
+                                    session_orglogo='$session_orglogo',
                                     sort_order = '$row'
-                                    WHERE id=$session_id"));
+                                    WHERE id=$session_id");
+                                /*var_dump($tddd);
+                                exit();*/
                         }
+               
+
                
 
                 }
@@ -409,7 +522,7 @@ if (!class_exists('AgendaPostSession')) {
                 $speaker_id=$my[0]->speaker_id;
 
                 $session_info= $id."**".$session_title."**".$session_timefrom."**".$session_timeto."**".$session_desc."**".$session_speaker."**".$session_speakerrole."**".$session_speakerorg."**".$session_orglogo."**".$session_room."**".$sort_order.'**'.$speaker_id;
-                echo $speaker_id;
+                //echo $id;
                 echo $session_info;
                 die();
              
@@ -438,7 +551,9 @@ if (!class_exists('AgendaPostSession')) {
                 wp_localize_script( 'ajax-test', 'the_ajax_script', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
                 wp_enqueue_script( 'select_function', $Agenda->assetsUrl. 'js/selectbox.js', array( 'jquery' ) );
                 wp_enqueue_script( 'select_radiobutton', 'http://code.jquery.com/jquery.min.js');
-                 
+                wp_enqueue_script('speak_list','http://code.jquery.com/jquery.min.js');
+                wp_enqueue_script( 'select_speaklist', $Agenda->assetsUrl. 'js/speaker-sort.js', array( 'jquery' ) );
+
             }
         
     }

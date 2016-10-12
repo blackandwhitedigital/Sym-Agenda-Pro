@@ -35,13 +35,12 @@ $settings = get_option($Agenda->options['settings']);
       <p>On the ‘Settings’ tab in the left hand menu you can change the appearance of many elements of the agenda.</p>
       <ul>
           <li><strong>Leisure Background and Color: </strong>this is for breaks such as tea, coffee and lunch. It can be used to create a nice visual seperation between sessions in your event by setting contrasting background and text colors to the rest of the agenda</li>
-          <li><strong>Table: </strong>This sets the base colour for the agenda table (isotope view only) - it becomes the main band of alternating color</li>
+          <li><strong>Table: </strong>This sets the base colour for the agenda table (layout2 view only) - it becomes the main band of alternating color</li>
           <li><strong>Slug:</strong> Default is &quot;agenda&quot; - used in the shortcode</li>
-          <li><strong>Session Title Color, Text Size &amp; Margin:</strong>
+          <li><strong>Session Title Color, Text Size</strong>
             <ul>
               <li><strong>Text Color:</strong> Select a color</li>
               <li><strong>Text Size: </strong>(eg. “12pt”) </li>
-              <li><strong>Margin:</strong> ? this may be removed </li>
             </ul>
           </li>
           <li><strong>Styling Bullet Points:</strong> If your event details include bullet points you can choose to display &quot;circle&quot;, &quot;square&quot;, &quot;disc&quot; or &quot;none&quot;</li>

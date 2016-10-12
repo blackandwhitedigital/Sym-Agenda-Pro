@@ -3,7 +3,7 @@ function editeme(my_string)
 {
 
     var My_Message = my_string;
-
+console.log(My_Message);
         jQuery.ajax({
 				url: ajaxurl,
 				type: 'POST',
@@ -13,6 +13,7 @@ function editeme(my_string)
 				},
 				//dataType: 'html',
 				success: function(data) {
+					
 					var value = data;
 	           		var test = value.split('**');
 	           		var id= test[0];
@@ -27,12 +28,13 @@ function editeme(my_string)
 	           		var room= test[9];
 	           		var check= test[10];
 	           		var speaker_id = test[11];
+	           		console.log(speaker);
 	           		//alert(check);
 					jQuery( "#session_id" ).val(id);
 					jQuery( "#session_title" ).val(title);
 					jQuery( "#session_timefrom" ).val(timefrom);
 					jQuery( "#session_timeto" ).val(timeto);
-					//jQuery( "#session_speaker" ).val(speaker);
+					jQuery( "#sessionspeaker_name" ).val(speaker);
 					jQuery('.speakerajax').replaceWith('<option>'+speaker+'</option>');
 					jQuery( "#session_desc" ).val(desc);
 					jQuery( "#session_speakerrole" ).val(role);

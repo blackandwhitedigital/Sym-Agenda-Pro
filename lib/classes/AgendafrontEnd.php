@@ -18,6 +18,7 @@ if( !class_exists( 'AgendafrontEnd' ) ) :
             $imgw = (isset($settings['imgw']) ? ($settings['imgw'] ? $settings['imgw'] : 150 ) : 150);
             $imgh = (isset($settings['imgh']) ? ($settings['imgh'] ? $settings['imgh'] : 150 ) : 150);
             $bp = (isset($settings['bullet_point']) ? ($settings['bullet_point'] ? $settings['bullet_point'] : 'circle' ) : 'circle');
+            $thc = (isset($settings['table_hcolor']) ? ($settings['table_hcolor'] ? $settings['table_hcolor'] : '#44BBFF') : '#44BBFF');
              /* heading setting layout1*/
             $tc = (isset($settings['heading_color']) ? ($settings['heading_color'] ? $settings['heading_color'] : '#4a4a4a' ) : '#4a4a4a');
             $ts = (isset($settings['heading_size']) ? ($settings['heading_size'] ? $settings['heading_size'] : '15px' ) : '15px');
@@ -49,13 +50,13 @@ if( !class_exists( 'AgendafrontEnd' ) ) :
            
 
             $html .= "<style type='text/css'>";
-            $html .= '.agenda-pro-table.agenisotope tr.leisure-isotope,.agenda-pro-table tr.leisure-row,.roomNo,.agenda-content,.agenda .short-desc, .agenda .agenda-isotope .agenda-content, .agenda .button-group .selected, .agenda .layout1 .agenda-content, .agenda .agenda-social a, .agenda .agenda-social li a.fa {';
+            $html .= '.agenda-pro-table.agenlayout2 tr.leisure-layout2,.agenda-pro-table tr.leisure-row,.roomNo,.agenda-content,.agenda .short-desc, .agenda .agenda-layout2 .agenda-content, .agenda .button-group .selected, .agenda .layout1 .agenda-content, .agenda .agenda-social a, .agenda .agenda-social li a.fa {';
             $html .= 'background: '.$pc.'!important';
             $html .= '}';
-            $html .= '.leisure-isotope .ses-title,.agenda-pro-table .leisure-row th,.agenda-pro-table tr.leisure-row,.agenda-pro-table.agenisotope tr.leisure-isotope{';
+            $html .= '.leisure-layout2 .ses-title,.agenda-pro-table .leisure-row th,.agenda-pro-table tr.leisure-row,.agenda-pro-table.agenlayout2 tr.leisure-layout2{';
             $html .= 'color: '.$lt;
             $html .= '}';
-            $html .= '.agenda-pro-table tr:nth-child(odd),.agenda-pro-table.agenisotope tr:nth-child(odd){';
+            $html .= '.agenda-pro-table tr:nth-child(odd),.agenda-pro-table.agenlayout2 tr:nth-child(odd){';
             $html .= 'background: '.$bc;
             $html .= '}';
             
@@ -117,6 +118,9 @@ if( !class_exists( 'AgendafrontEnd' ) ) :
             $html .= 'font-style: '.$ssd.'!important;';
             $html .= 'text-decoration: '.$ssd.'!important';
             $html .= '}';
+            $html .= '.agenlayout2 .iso-th{';
+            $html .= 'background-color: '.$thc.'!important;';
+            $html .= '}';
             
             $html .= (isset($settings['custom_css']) ? ($settings['custom_css'] ? "{$settings['custom_css']}" : null) : null );
 
@@ -128,8 +132,8 @@ if( !class_exists( 'AgendafrontEnd' ) ) :
             global $Agenda;
             wp_enqueue_style( 'agenda-fontawsome', $Agenda->assetsUrl .'css/font-awesome/css/font-awesome.min.css' );
             wp_enqueue_style( 'agendastyle', $Agenda->assetsUrl . 'css/agendastyle.css' );
-            wp_enqueue_script( 'agenda-isotope-js', $Agenda->assetsUrl . 'js/isotope.pkgd.js', array('jquery'), '2.2.2', true);
-            wp_enqueue_script( 'agenda-isotope-imageload-js', $Agenda->assetsUrl . 'js/imagesloaded.pkgd.min.js', array('jquery'), null, true);
+            wp_enqueue_script( 'agenda-layout2-js', $Agenda->assetsUrl . 'js/layout2.pkgd.js', array('jquery'), '2.2.2', true);
+            wp_enqueue_script( 'agenda-layout2-imageload-js', $Agenda->assetsUrl . 'js/imagesloaded.pkgd.min.js', array('jquery'), null, true);
             wp_enqueue_script( 'tpl-team-front-end', $Agenda->assetsUrl . 'js/front-end.js', null, null, true);
         }
 

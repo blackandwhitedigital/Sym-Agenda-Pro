@@ -10,6 +10,7 @@ function displayVals() {
 			  }, 
 			success: function(data) {
 			 //alert(speaker);
+			 console.log(singleValues);
 	           var value = singleValues;
 	           var test = value.split('**');
 	           var speaker= test[0];
@@ -19,6 +20,8 @@ function displayVals() {
 	           var speaker_id= test[4];
 	           //alert(speaker+speaker_id);
 	           //speakerajax
+	           
+	            jQuery( "#sessionspeaker_name" ).val(speaker);
 	            jQuery( "#session_speakerrole" ).val(designation);
 	            jQuery( "#session_speakerorg" ).val(orgnisation);
 	            jQuery( "#meta_image" ).val(org_logo);

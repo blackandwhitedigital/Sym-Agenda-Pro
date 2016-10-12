@@ -26,7 +26,7 @@ if (!class_exists('AgendaPostMeta')):
         function agenda_meta_boxs() {
             add_meta_box(
                 'agenda_meta',
-                __('Event Info', AGENDA_SLUG ),
+                __('Agenda Info', AGENDA_SLUG ),
                 array($this,'agenda_meta'),
                 'agenda',
                 'normal',
@@ -53,7 +53,7 @@ if (!class_exists('AgendaPostMeta')):
 
                 <div class="tlp-field-holder">
                     <div class="tplp-label">
-                        <label for="event_date"><?php _e('Event Date:', AGENDA_SLUG); ?>:</label>
+                        <label for="event_date"><?php _e('Agenda Date:', AGENDA_SLUG); ?>:</label>
                     </div>
                     <div class="tlp-field">
                         <input type="text" id="event_date" name="event_date" class="tlpfield datepicker" value="<?php echo (@$meta['event_date'][0] ? @$meta['event_date'][0] : null) ?>">

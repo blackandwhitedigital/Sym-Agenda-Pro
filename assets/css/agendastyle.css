@@ -92,15 +92,15 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 .agenda .layout3 .round-img img{-webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%;}
 /************************ End Layout 3 ********************/
 
-/******************** isotope ***********************/
-.agenda .agenda-isotope .row{ position: relative;}
-.agenda .agenda-isotope{ position: relative; }
-.agenda .agenda-isotope .agenda-content{background: #007acc;color: #ffffff; padding: 10px; }
-.agenda .agenda-isotope .single-team-area h3 { padding: 0; margin: 0 0 10px 0; font-size: 22px; }
-.agenda .agenda-isotope .single-team-area h3, .agenda .agenda-isotope .designation { color: #fff;}
-.agenda .agenda-isotope .single-team-area h3 a{  color: #000!important;box-shadow: none; border: none; text-decoration: none;}
-.agenda .agenda-isotope .single-team { position: relative; overflow: hidden; }
-.agenda .agenda-isotope .short-bio p{ padding: 10px 0px 0px; margin-bottom: 10px;}
+/******************** layout2 ***********************/
+.agenda .agenda-layout2 .row{ position: relative;}
+.agenda .agenda-layout2{ position: relative; }
+.agenda .agenda-layout2 .agenda-content{background: #007acc;color: #ffffff; padding: 10px; }
+.agenda .agenda-layout2 .single-team-area h3 { padding: 0; margin: 0 0 10px 0; font-size: 22px; }
+.agenda .agenda-layout2 .single-team-area h3, .agenda .agenda-layout2 .designation { color: #fff;}
+.agenda .agenda-layout2 .single-team-area h3 a{  color: #000!important;box-shadow: none; border: none; text-decoration: none;}
+.agenda .agenda-layout2 .single-team { position: relative; overflow: hidden; }
+.agenda .agenda-layout2 .short-bio p{ padding: 10px 0px 0px; margin-bottom: 10px;}
 
 .agenda .button-group{text-align: center;padding-bottom: 20px; }
 .agenda .button-group button { border:none;color: #fff; font-size: 14px!important; text-transform: capitalize; font-weight: 400 !important;margin: 5px;padding: 10px 10px; outline: 0px;}
@@ -506,7 +506,7 @@ table.agenda-table .session_speaker .role{font-style: italic; font-size: 13px;}
   padding: 0px;
 }
 
-.agenda-isotope code{
+.agenda-layout2 code{
   background: transparent;
   padding: 0px;
 }
@@ -829,15 +829,15 @@ table.agenda-pro-table {
     width: 27%;
   }
   }
-.agenda-pro-table.agenisotope tr.leisure-isotope{
+.agenda-pro-table.agenlayout2 tr.leisure-layout2{
   background-color: #E4E6E6;
   color: #4a4a4a;
 }
-table.agenda-pro-table.agenisotope {
+table.agenda-pro-table.agenlayout2 {
     border: 10px solid #aaa;
     padding: 0px; 
 }
-.agenda-pro-table.agenisotope th, .agenda-pro-table.agenisotope td {
+.agenda-pro-table.agenlayout2 th, .agenda-pro-table.agenlayout2 td {
     border-bottom: 1px solid #eee;
 }
 
@@ -852,10 +852,10 @@ table.agenda-pro-table.agenisotope {
 }
 
 @media (max-width: 680px){
-  .agenisotope .col20{
+  .agenlayout2 .col20{
   width: 25%;
 }
-.agenisotope .col80{
+.agenlayout2 .col80{
   width: 75%;
 }
 }
@@ -865,21 +865,21 @@ table.agenda-pro-table.agenisotope {
 padding-right: 10%;
 padding-left: 10%;
    }
-   .agenisotope .col20{
+   .agenlayout2 .col20{
   width: 25%;
 }
-.agenisotope .col80{
+.agenlayout2 .col80{
   width: 75%;
 }
 }
-.agenisotope .col20{
+.agenlayout2 .col20{
   width: 16%;
   font-size: 14px;
 }
-.agenisotope .col80{
+.agenlayout2 .col80{
   width: 84%;
 }
-.agenisotope .iso-th {
+.agenlayout2 .iso-th {
     background-color: #44BBFF;
 }
 
@@ -911,3 +911,6 @@ div#popupContact {
   transform: translate(-50%, -50%)
 }
 .m-bottom20{margin-bottom: 20px;}
+.submitspeak, .speakmanual,.speakerlist{
+  display: none;
+}

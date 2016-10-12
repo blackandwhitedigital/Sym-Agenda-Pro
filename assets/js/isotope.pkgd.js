@@ -1,10 +1,10 @@
 /*!
- * Isotope PACKAGED v2.2.2
+ * layout2 PACKAGED v2.2.2
  *
  * Licensed GPLv3 for open source use
- * or Isotope Commercial License for commercial use
+ * or layout2 Commercial License for commercial use
  *
- * http://isotope.metafizzy.co
+ * http://layout2.metafizzy.co
  * Copyright 2015 Metafizzy
  */
 
@@ -1577,7 +1577,7 @@ function Item( element, layout ) {
   }
 
   this.element = element;
-  // parent layout class, i.e. Masonry, Isotope, or Packery
+  // parent layout class, i.e. Masonry, layout2, or Packery
   this.layout = layout;
   this.position = {
     x: 0,
@@ -2984,7 +2984,7 @@ return Outlayer;
 
 
 /**
- * Isotope Item
+ * layout2 Item
 **/
 
 ( function( window, factory ) {
@@ -2992,7 +2992,7 @@ return Outlayer;
   // universal module definition
   if ( typeof define == 'function' && define.amd ) {
     // AMD
-    define( 'isotope/js/item',[
+    define( 'layout2/js/item',[
         'outlayer/outlayer'
       ],
       factory );
@@ -3003,8 +3003,8 @@ return Outlayer;
     );
   } else {
     // browser global
-    window.Isotope = window.Isotope || {};
-    window.Isotope.Item = factory(
+    window.layout2 = window.layout2 || {};
+    window.layout2.Item = factory(
       window.Outlayer
     );
   }
@@ -3061,7 +3061,7 @@ return Item;
 }));
 
 /**
- * Isotope LayoutMode
+ * layout2 LayoutMode
  */
 
 ( function( window, factory ) {
@@ -3070,7 +3070,7 @@ return Item;
 
   if ( typeof define == 'function' && define.amd ) {
     // AMD
-    define( 'isotope/js/layout-mode',[
+    define( 'layout2/js/layout-mode',[
         'get-size/get-size',
         'outlayer/outlayer'
       ],
@@ -3083,8 +3083,8 @@ return Item;
     );
   } else {
     // browser global
-    window.Isotope = window.Isotope || {};
-    window.Isotope.LayoutMode = factory(
+    window.layout2 = window.layout2 || {};
+    window.layout2.LayoutMode = factory(
       window.getSize,
       window.Outlayer
     );
@@ -3094,20 +3094,20 @@ return Item;
   'use strict';
 
   // layout mode class
-  function LayoutMode( isotope ) {
-    this.isotope = isotope;
+  function LayoutMode( layout2 ) {
+    this.layout2 = layout2;
     // link properties
-    if ( isotope ) {
-      this.options = isotope.options[ this.namespace ];
-      this.element = isotope.element;
-      this.items = isotope.filteredItems;
-      this.size = isotope.size;
+    if ( layout2 ) {
+      this.options = layout2.options[ this.namespace ];
+      this.element = layout2.element;
+      this.items = layout2.filteredItems;
+      this.size = layout2.size;
     }
   }
 
   /**
    * some methods should just defer to default Outlayer method
-   * and reference the Isotope instance as `this`
+   * and reference the layout2 instance as `this`
   **/
   ( function() {
     var facadeMethods = [
@@ -3126,7 +3126,7 @@ return Item;
 
     function getOutlayerMethod( methodName ) {
       return function() {
-        return Outlayer.prototype[ methodName ].apply( this.isotope, arguments );
+        return Outlayer.prototype[ methodName ].apply( this.layout2, arguments );
       };
     }
   })();
@@ -3136,17 +3136,17 @@ return Item;
   // for horizontal layout modes, check vertical size
   LayoutMode.prototype.needsVerticalResizeLayout = function() {
     // don't trigger if size did not change
-    var size = getSize( this.isotope.element );
+    var size = getSize( this.layout2.element );
     // check that this.size and size are there
     // IE8 triggers resize on body size change, so they might not be
-    var hasSizes = this.isotope.size && size;
-    return hasSizes && size.innerHeight != this.isotope.size.innerHeight;
+    var hasSizes = this.layout2.size && size;
+    return hasSizes && size.innerHeight != this.layout2.size.innerHeight;
   };
 
   // ----- measurements ----- //
 
   LayoutMode.prototype._getMeasurement = function() {
-    this.isotope._getMeasurement.apply( this, arguments );
+    this.layout2._getMeasurement.apply( this, arguments );
   };
 
   LayoutMode.prototype.getColumnWidth = function() {
@@ -3175,23 +3175,23 @@ return Item;
     var firstItemSize = this.getFirstItemSize();
     this[ segmentName ] = firstItemSize && firstItemSize[ outerSize ] ||
       // or size of container
-      this.isotope.size[ 'inner' + size ];
+      this.layout2.size[ 'inner' + size ];
   };
 
   LayoutMode.prototype.getFirstItemSize = function() {
-    var firstItem = this.isotope.filteredItems[0];
+    var firstItem = this.layout2.filteredItems[0];
     return firstItem && firstItem.element && getSize( firstItem.element );
   };
 
-  // ----- methods that should reference isotope ----- //
+  // ----- methods that should reference layout2 ----- //
 
   LayoutMode.prototype.layout = function() {
-    this.isotope.layout.apply( this.isotope, arguments );
+    this.layout2.layout.apply( this.layout2, arguments );
   };
 
   LayoutMode.prototype.getSize = function() {
-    this.isotope.getSize();
-    this.size = this.isotope.size;
+    this.layout2.getSize();
+    this.size = this.layout2.size;
   };
 
   // -------------------------- create -------------------------- //
@@ -3212,7 +3212,7 @@ return Item;
     }
 
     Mode.prototype.namespace = namespace;
-    // register in Isotope
+    // register in layout2
     LayoutMode.modes[ namespace ] = Mode;
 
     return Mode;
@@ -3437,7 +3437,7 @@ return Item;
   // universal module definition
   if ( typeof define == 'function' && define.amd ) {
     // AMD
-    define( 'isotope/js/layout-modes/masonry',[
+    define( 'layout2/js/layout-modes/masonry',[
         '../layout-mode',
         'masonry/masonry'
       ],
@@ -3451,7 +3451,7 @@ return Item;
   } else {
     // browser global
     factory(
-      window.Isotope.LayoutMode,
+      window.layout2.LayoutMode,
       window.Masonry
     );
   }
@@ -3490,15 +3490,15 @@ function extend( a, b ) {
   var measureColumns = MasonryMode.prototype.measureColumns;
   MasonryMode.prototype.measureColumns = function() {
     // set items, used if measuring first item
-    this.items = this.isotope.filteredItems;
+    this.items = this.layout2.filteredItems;
     measureColumns.call( this );
   };
 
   // HACK copy over isOriginLeft/Top options
   var _manageStamp = MasonryMode.prototype._manageStamp;
   MasonryMode.prototype._manageStamp = function() {
-    this.options.isOriginLeft = this.isotope.options.isOriginLeft;
-    this.options.isOriginTop = this.isotope.options.isOriginTop;
+    this.options.isOriginLeft = this.layout2.options.isOriginLeft;
+    this.options.isOriginTop = this.layout2.options.isOriginTop;
     _manageStamp.apply( this, arguments );
   };
 
@@ -3515,7 +3515,7 @@ function extend( a, b ) {
   // universal module definition
   if ( typeof define == 'function' && define.amd ) {
     // AMD
-    define( 'isotope/js/layout-modes/fit-rows',[
+    define( 'layout2/js/layout-modes/fit-rows',[
         '../layout-mode'
       ],
       factory );
@@ -3527,7 +3527,7 @@ function extend( a, b ) {
   } else {
     // browser global
     factory(
-      window.Isotope.LayoutMode
+      window.layout2.LayoutMode
     );
   }
 
@@ -3548,7 +3548,7 @@ FitRows.prototype._getItemLayoutPosition = function( item ) {
 
   var itemWidth = item.size.outerWidth + this.gutter;
   // if this element cannot fit in the current row
-  var containerWidth = this.isotope.size.innerWidth + this.gutter;
+  var containerWidth = this.layout2.size.innerWidth + this.gutter;
   if ( this.x !== 0 && itemWidth + this.x > containerWidth ) {
     this.x = 0;
     this.y = this.maxY;
@@ -3582,7 +3582,7 @@ return FitRows;
   // universal module definition
   if ( typeof define == 'function' && define.amd ) {
     // AMD
-    define( 'isotope/js/layout-modes/vertical',[
+    define( 'layout2/js/layout-modes/vertical',[
         '../layout-mode'
       ],
       factory );
@@ -3594,7 +3594,7 @@ return FitRows;
   } else {
     // browser global
     factory(
-      window.Isotope.LayoutMode
+      window.layout2.LayoutMode
     );
   }
 
@@ -3611,7 +3611,7 @@ Vertical.prototype._resetLayout = function() {
 
 Vertical.prototype._getItemLayoutPosition = function( item ) {
   item.getSize();
-  var x = ( this.isotope.size.innerWidth - item.size.outerWidth ) *
+  var x = ( this.layout2.size.innerWidth - item.size.outerWidth ) *
     this.options.horizontalAlignment;
   var y = this.y;
   this.y += item.size.outerHeight;
@@ -3627,12 +3627,12 @@ return Vertical;
 }));
 
 /*!
- * Isotope v2.2.2
+ * layout2 v2.2.2
  *
  * Licensed GPLv3 for open source use
- * or Isotope Commercial License for commercial use
+ * or layout2 Commercial License for commercial use
  *
- * http://isotope.metafizzy.co
+ * http://layout2.metafizzy.co
  * Copyright 2015 Metafizzy
  */
 
@@ -3647,12 +3647,12 @@ return Vertical;
         'get-size/get-size',
         'matches-selector/matches-selector',
         'fizzy-ui-utils/utils',
-        'isotope/js/item',
-        'isotope/js/layout-mode',
+        'layout2/js/item',
+        'layout2/js/layout-mode',
         // include default layout modes
-        'isotope/js/layout-modes/masonry',
-        'isotope/js/layout-modes/fit-rows',
-        'isotope/js/layout-modes/vertical'
+        'layout2/js/layout-modes/masonry',
+        'layout2/js/layout-modes/fit-rows',
+        'layout2/js/layout-modes/vertical'
       ],
       function( Outlayer, getSize, matchesSelector, utils, Item, LayoutMode ) {
         return factory( window, Outlayer, getSize, matchesSelector, utils, Item, LayoutMode );
@@ -3674,14 +3674,14 @@ return Vertical;
     );
   } else {
     // browser global
-    window.Isotope = factory(
+    window.layout2 = factory(
       window,
       window.Outlayer,
       window.getSize,
       window.matchesSelector,
       window.fizzyUIUtils,
-      window.Isotope.Item,
-      window.Isotope.LayoutMode
+      window.layout2.Item,
+      window.layout2.LayoutMode
     );
   }
 
@@ -3714,19 +3714,19 @@ var getText = docElem.textContent ?
     return elem.innerText;
   };
 
-// -------------------------- isotopeDefinition -------------------------- //
+// -------------------------- layout2Definition -------------------------- //
 
   // create an Outlayer layout class
-  var Isotope = Outlayer.create( 'isotope', {
+  var layout2 = Outlayer.create( 'layout2', {
     layoutMode: "masonry",
     isJQueryFiltering: true,
     sortAscending: true
   });
 
-  Isotope.Item = Item;
-  Isotope.LayoutMode = LayoutMode;
+  layout2.Item = Item;
+  layout2.LayoutMode = LayoutMode;
 
-  Isotope.prototype._create = function() {
+  layout2.prototype._create = function() {
     this.itemGUID = 0;
     // functions that sort items
     this._sorters = {};
@@ -3746,14 +3746,14 @@ var getText = docElem.textContent ?
     }
   };
 
-  Isotope.prototype.reloadItems = function() {
+  layout2.prototype.reloadItems = function() {
     // reset item ID counter
     this.itemGUID = 0;
     // call super
     Outlayer.prototype.reloadItems.call( this );
   };
 
-  Isotope.prototype._itemize = function() {
+  layout2.prototype._itemize = function() {
     var items = Outlayer.prototype._itemize.apply( this, arguments );
     // assign ID for original-order
     for ( var i=0, len = items.length; i < len; i++ ) {
@@ -3767,7 +3767,7 @@ var getText = docElem.textContent ?
 
   // -------------------------- layout -------------------------- //
 
-  Isotope.prototype._initLayoutMode = function( name ) {
+  layout2.prototype._initLayoutMode = function( name ) {
     var Mode = LayoutMode.modes[ name ];
     // set mode options
     // HACK extend initial options, back-fill in default options
@@ -3779,7 +3779,7 @@ var getText = docElem.textContent ?
   };
 
 
-  Isotope.prototype.layout = function() {
+  layout2.prototype.layout = function() {
     // if first time doing layout, do all magic
     if ( !this._isLayoutInited && this.options.isInitLayout ) {
       this.arrange();
@@ -3789,7 +3789,7 @@ var getText = docElem.textContent ?
   };
 
   // private method to be used in layout() & magic()
-  Isotope.prototype._layout = function() {
+  layout2.prototype._layout = function() {
     // don't animate first layout
     var isInstant = this._getIsInstant();
     // layout flow
@@ -3802,7 +3802,7 @@ var getText = docElem.textContent ?
   };
 
   // filter + sort + layout
-  Isotope.prototype.arrange = function( opts ) {
+  layout2.prototype.arrange = function( opts ) {
     // set any options pass
     this.option( opts );
     this._getIsInstant();
@@ -3830,12 +3830,12 @@ var getText = docElem.textContent ?
     this._layout();
   };
   // alias to _init for main plugin method
-  Isotope.prototype._init = Isotope.prototype.arrange;
+  layout2.prototype._init = layout2.prototype.arrange;
 
   // HACK
   // Don't animate/transition first layout
   // Or don't animate/transition other layouts
-  Isotope.prototype._getIsInstant = function() {
+  layout2.prototype._getIsInstant = function() {
     var isInstant = this.options.isLayoutInstant !== undefined ?
       this.options.isLayoutInstant : !this._isLayoutInited;
     this._isInstant = isInstant;
@@ -3844,7 +3844,7 @@ var getText = docElem.textContent ?
 
   // listen for layoutComplete, hideComplete and revealComplete
   // to trigger arrangeComplete
-  Isotope.prototype._bindArrangeComplete = function() {
+  layout2.prototype._bindArrangeComplete = function() {
     // listen for 3 events to trigger arrangeComplete
     var isLayoutComplete, isHideComplete, isRevealComplete;
     var _this = this;
@@ -3869,7 +3869,7 @@ var getText = docElem.textContent ?
 
   // -------------------------- filter -------------------------- //
 
-  Isotope.prototype._filter = function( items ) {
+  layout2.prototype._filter = function( items ) {
     var filter = this.options.filter;
     filter = filter || '*';
     var matches = [];
@@ -3908,7 +3908,7 @@ var getText = docElem.textContent ?
   };
 
   // get a jQuery, function, or a matchesSelector test given the filter
-  Isotope.prototype._getFilterTest = function( filter ) {
+  layout2.prototype._getFilterTest = function( filter ) {
     if ( jQuery && this.options.isJQueryFiltering ) {
       // use jQuery
       return function( item ) {
@@ -3933,7 +3933,7 @@ var getText = docElem.textContent ?
    * @params {Array} elems
    * @public
    */
-  Isotope.prototype.updateSortData = function( elems ) {
+  layout2.prototype.updateSortData = function( elems ) {
     // get items
     var items;
     if ( elems ) {
@@ -3948,7 +3948,7 @@ var getText = docElem.textContent ?
     this._updateItemsSortData( items );
   };
 
-  Isotope.prototype._getSorters = function() {
+  layout2.prototype._getSorters = function() {
     var getSortData = this.options.getSortData;
     for ( var key in getSortData ) {
       var sorter = getSortData[ key ];
@@ -3957,10 +3957,10 @@ var getText = docElem.textContent ?
   };
 
   /**
-   * @params {Array} items - of Isotope.Items
+   * @params {Array} items - of layout2.Items
    * @private
    */
-  Isotope.prototype._updateItemsSortData = function( items ) {
+  layout2.prototype._updateItemsSortData = function( items ) {
     // do not update if no items
     var len = items && items.length;
 
@@ -3993,7 +3993,7 @@ var getText = docElem.textContent ?
       var attr = attrMatch && attrMatch[1];
       var getValue = getValueGetter( attr, query );
       // use second argument as a parser
-      var parser = Isotope.sortDataParsers[ args[1] ];
+      var parser = layout2.sortDataParsers[ args[1] ];
       // parse the value, if there was a parser
       sorter = parser ? function( elem ) {
         return elem && parser( getValue( elem ) );
@@ -4028,7 +4028,7 @@ var getText = docElem.textContent ?
   })();
 
   // parsers used in getSortData shortcut strings
-  Isotope.sortDataParsers = {
+  layout2.sortDataParsers = {
     'parseInt': function( val ) {
       return parseInt( val, 10 );
     },
@@ -4040,7 +4040,7 @@ var getText = docElem.textContent ?
   // ----- sort method ----- //
 
   // sort filteredItem order
-  Isotope.prototype._sort = function() {
+  layout2.prototype._sort = function() {
     var sortByOpt = this.options.sortBy;
     if ( !sortByOpt ) {
       return;
@@ -4079,7 +4079,7 @@ var getText = docElem.textContent ?
   // -------------------------- methods -------------------------- //
 
   // get layout mode
-  Isotope.prototype._mode = function() {
+  layout2.prototype._mode = function() {
     var layoutMode = this.options.layoutMode;
     var mode = this.modes[ layoutMode ];
     if ( !mode ) {
@@ -4092,32 +4092,32 @@ var getText = docElem.textContent ?
     return mode;
   };
 
-  Isotope.prototype._resetLayout = function() {
+  layout2.prototype._resetLayout = function() {
     // trigger original reset layout
     Outlayer.prototype._resetLayout.call( this );
     this._mode()._resetLayout();
   };
 
-  Isotope.prototype._getItemLayoutPosition = function( item  ) {
+  layout2.prototype._getItemLayoutPosition = function( item  ) {
     return this._mode()._getItemLayoutPosition( item );
   };
 
-  Isotope.prototype._manageStamp = function( stamp ) {
+  layout2.prototype._manageStamp = function( stamp ) {
     this._mode()._manageStamp( stamp );
   };
 
-  Isotope.prototype._getContainerSize = function() {
+  layout2.prototype._getContainerSize = function() {
     return this._mode()._getContainerSize();
   };
 
-  Isotope.prototype.needsResizeLayout = function() {
+  layout2.prototype.needsResizeLayout = function() {
     return this._mode().needsResizeLayout();
   };
 
   // -------------------------- adding & removing -------------------------- //
 
   // HEADS UP overwrites default Outlayer appended
-  Isotope.prototype.appended = function( elems ) {
+  layout2.prototype.appended = function( elems ) {
     var items = this.addItems( elems );
     if ( !items.length ) {
       return;
@@ -4129,7 +4129,7 @@ var getText = docElem.textContent ?
   };
 
   // HEADS UP overwrites default Outlayer prepended
-  Isotope.prototype.prepended = function( elems ) {
+  layout2.prototype.prepended = function( elems ) {
     var items = this._itemize( elems );
     if ( !items.length ) {
       return;
@@ -4146,7 +4146,7 @@ var getText = docElem.textContent ?
     this.items = items.concat( this.items );
   };
 
-  Isotope.prototype._filterRevealAdded = function( items ) {
+  layout2.prototype._filterRevealAdded = function( items ) {
     var filtered = this._filter( items );
     this.hide( filtered.needHide );
     // reveal all new items
@@ -4160,7 +4160,7 @@ var getText = docElem.textContent ?
    * Filter, sort, and layout newly-appended item elements
    * @param {Array or NodeList or Element} elems
    */
-  Isotope.prototype.insert = function( elems ) {
+  layout2.prototype.insert = function( elems ) {
     var items = this.addItems( elems );
     if ( !items.length ) {
       return;
@@ -4186,8 +4186,8 @@ var getText = docElem.textContent ?
     this.reveal( filteredInsertItems );
   };
 
-  var _remove = Isotope.prototype.remove;
-  Isotope.prototype.remove = function( elems ) {
+  var _remove = layout2.prototype.remove;
+  layout2.prototype.remove = function( elems ) {
     elems = utils.makeArray( elems );
     var removeItems = this.getItems( elems );
     // do regular thing
@@ -4205,7 +4205,7 @@ var getText = docElem.textContent ?
     }
   };
 
-  Isotope.prototype.shuffle = function() {
+  layout2.prototype.shuffle = function() {
     // update random sortData
     for ( var i=0, len = this.items.length; i < len; i++ ) {
       var item = this.items[i];
@@ -4223,7 +4223,7 @@ var getText = docElem.textContent ?
    * @returns ret
    * @private
    */
-  Isotope.prototype._noTransition = function( fn ) {
+  layout2.prototype._noTransition = function( fn ) {
     // save transitionDuration before disabling
     var transitionDuration = this.options.transitionDuration;
     // disable transition
@@ -4241,7 +4241,7 @@ var getText = docElem.textContent ?
    * getter method for getting filtered item elements
    * @returns {Array} elems - collection of item elements
    */
-  Isotope.prototype.getFilteredItemElements = function() {
+  layout2.prototype.getFilteredItemElements = function() {
     var elems = [];
     for ( var i=0, len = this.filteredItems.length; i < len; i++ ) {
       elems.push( this.filteredItems[i].element );
@@ -4251,7 +4251,7 @@ var getText = docElem.textContent ?
 
   // -----  ----- //
 
-  return Isotope;
+  return layout2;
 
 }));
 

@@ -38,6 +38,18 @@ $settings = get_option($Agenda->options['settings']);
                         </td>
                     </tr>
 
+                     <tr>
+                        <th scope="row"><label for="table-color"><?php _e('Table Heading Color', AGENDA_SLUG); ?></label>
+                        </th>
+                        <td class="">
+                            <input name="table_hcolor" id="table_hcolor" type="text"
+                                   value="<?php echo(isset($settings['table_hcolor']) ? ($settings['table_hcolor'] ? $settings['table_hcolor'] : '#44BBFF') : '#44BBFF'); ?>"
+                                   class="tlp-color">
+
+                        </td>
+                    </tr>
+
+
 
                     <tr>
                         <th scope="row"><label for="slug"><?php _e('Slug', AGENDA_SLUG); ?></label></th>

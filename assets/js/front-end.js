@@ -1,6 +1,6 @@
 (function($){
-    var $isotop = $('.tlp-team-isotope').imagesLoaded( function() {
-      $isotop.isotope({
+    var $isotop = $('.tlp-team-layout2').imagesLoaded( function() {
+      $isotop.layout2({
             getSortData: {
                 name: '.name',
                 designation: '.designation',
@@ -12,7 +12,7 @@
 
     $('.sort-by-button-group').on( 'click', 'button', function() {
         var sortByValue = $(this).attr('data-sort-by');
-        $isotop.isotope({ sortBy: sortByValue });
+        $isotop.layout2({ sortBy: sortByValue });
         $(this).parent().find('.selected').removeClass('selected');
         $(this).addClass('selected');
     });
@@ -38,16 +38,16 @@ function HeightResize(){
 
 
         var tlpMaxH = 0;
-        jQuery(".tlp-team-isotope > div > .tlp-equal-height").height("auto");
-        jQuery(".tlp-team-isotope > div > .tlp-equal-height").each(function () {
+        jQuery(".tlp-team-layout2 > div > .tlp-equal-height").height("auto");
+        jQuery(".tlp-team-layout2 > div > .tlp-equal-height").each(function () {
             var $thisH = jQuery(this).outerHeight();
             if ($thisH > tlpMaxH) {
                 tlpMaxH = $thisH;
             }
         });
-        jQuery(".tlp-team-isotope > div > .tlp-equal-height").height(tlpMaxH + "px");
+        jQuery(".tlp-team-layout2 > div > .tlp-equal-height").height(tlpMaxH + "px");
     }else{
         jQuery(".tlp-team").children('div').children(".tlp-equal-height").height("auto");
-        jQuery(".tlp-team-isotope > div > .tlp-equal-height").height("auto");
+        jQuery(".tlp-team-layout2 > div > .tlp-equal-height").height("auto");
     }
 }

@@ -200,7 +200,7 @@ if( !is_object( $Agenda ) ) $Agenda = new Agenda;
 function wpb_change_title_name( $title ){
      $screen = get_current_screen();
      if  ( 'agenda' == $screen->post_type ) {
-          $title = 'Event Name';
+          $title = 'Agenda Name';
      }
      return $title;
 }
@@ -213,16 +213,16 @@ add_action( 'vc_before_init', 'visualcomposer_compatibilityagenda' );
 function visualcomposer_compatibilityagenda() {
     global $Agenda;
     vc_map( array(
-        "name" => __( "Agenda", "Event-info" ),
+        "name" => __( "Agenda", "Agenda-info" ),
         "base" => "agenda",
         "class" => "",
-        "category" => __( "Content", "Event-info"),
+        "category" => __( "Content", "Agenda-info"),
         "params" => array(
          array(
             "type" => "textfield",
             "holder" => "div",
             "class" => "",
-            "heading" => __( "Shortcode", "Event-info" ),
+            "heading" => __( "Shortcode", "Agenda-info" ),
             "param_name" => "agenda",
             "value" => '[agenda col="2"  orderby="title" order="DESC" layout="1"]',
             "description" => __( "Shortcode for Agenda Plugin.", "Agenda-info" )
