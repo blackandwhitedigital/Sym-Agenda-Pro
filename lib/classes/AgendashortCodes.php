@@ -245,15 +245,27 @@ if (!class_exists('AgendashortCodes')):
                 if ($leisure==0) {
                     $html .= '<td>';
                     $html .= "<span class='ses-title title_style'>{$session_title}</span><a id='speakertoggle'><span class='session_toggle'>";
+                    $html .= "<div class='plusicondesc'>";
                     if($session_desc){
+                    
+                    $html .= "<a class='flip-icon plusimg".$id."' id='".$id."' onClick='fadeinFunction($id)'><div  id='flip-sec'><i class='fa fa-plus'></i></div></a></span></a><br>";
+                    }
+
+                    
+                    $html .= "<a class='flip-icons minusimg".$id."' id='".$id."' onClick='fadeoutFunction($id)' ><div  id='flip-sec'><i class='fa fa-minus'></i></a>";
+                    $html .= "<div class='descagenda agenda-spek-img ".$id."'>";
+                    $html .="<div class='session_desc desc_style'>".$session_desc."</div>";
+                    $html .= "</div></div></div></div>";
+
+                    $html .= "<div class='minusicondesc'>";
+                    if($session_desc){
+                
                     $html .= "<a class='flip-icon minusimg".$id."' id='".$id."' onClick='fadeoutFunction($id)' ><div  id='flip-sec'><i class='fa fa-minus'></i></div></a></span></a><br>";
                     $html .= "<div class='agenda-spek-img ".$id."'>";
                     $html .="<div class='session_desc desc_style'>".$session_desc."</div>";
-                    $html .= "</div></div>";
-                    
+                    $html .= "</div>";
                     }
-
-                    $html .= "<a class='flip-icons plusimg".$id."' id='".$id."' onClick='fadeinFunction($id)'><div  id='flip-sec'><i class='fa fa-plus'></i></div></a>";
+                    $html .= "<a class='flip-icons plusimg".$id."' id='".$id."' onClick='fadeinFunction($id)'><div  id='flip-sec'><i class='fa fa-plus'></i></div></a></div></div>";
 
                     if (!empty($session_speaker)) {
                          
@@ -278,9 +290,11 @@ if (!class_exists('AgendashortCodes')):
                             
                         }
                         $return = $wpdb->get_row( "SELECT ID FROM wp_posts WHERE post_title = '" . $session_speaker . "' && post_status = 'publish' && post_type = 'speaker' ", 'ARRAY_N' );
+                       /* var_dump($return[0]);
+                        echo "</br>";*/
                         $postid = $return[0];
                     if( !empty($postid) ) {
-                        //$postid = $return;
+                        
                         $html .= "<a onclick='event_show(" . $postid . ")'' id='speakerinfo'><span class='session_speakerimg'><i class='fa fa-user' aria-hidden='true'></i></span></a></p>";
                     } 
                     }
@@ -373,16 +387,28 @@ if (!class_exists('AgendashortCodes')):
                 if ($leisure==0) {
                     $html .= '<td>';
                     $html .= "<span class='ses-title title_style'>{$session_title}</span><a id='speakertoggle'><span class='session_toggle'>";
-                    
+                    $html .= "<div class='plusicondesc'>";
                     if($session_desc){
+                    
+                    $html .= "<a class='flip-icon plusimg".$id."' id='".$id."' onClick='fadeinFunction($id)'><div  id='flip-sec'><i class='fa fa-plus'></i></div></a></span></a><br>";
+                    }
+
+                    
+                    $html .= "<a class='flip-icons minusimg".$id."' id='".$id."' onClick='fadeoutFunction($id)' ><div  id='flip-sec'><i class='fa fa-minus'></i></a>";
+                    $html .= "<div class='descagenda agenda-spek-img ".$id."'>";
+                    $html .="<div class='session_desc desc_style'>".$session_desc."</div>";
+                    $html .= "</div></div></div></div>";
+
+                    $html .= "<div class='minusicondesc'>";
+                    if($session_desc){
+                
                     $html .= "<a class='flip-icon minusimg".$id."' id='".$id."' onClick='fadeoutFunction($id)' ><div  id='flip-sec'><i class='fa fa-minus'></i></div></a></span></a><br>";
                     $html .= "<div class='agenda-spek-img ".$id."'>";
                     $html .="<div class='session_desc desc_style'>".$session_desc."</div>";
-                    $html .= "</div></div>";
-                    
+                    $html .= "</div>";
                     }
-
-                    $html .= "<a class='flip-icons plusimg".$id."' id='".$id."' onClick='fadeinFunction($id)'><div  id='flip-sec'><i class='fa fa-plus'></i></div></a>";
+                    $html .= "<a class='flip-icons plusimg".$id."' id='".$id."' onClick='fadeinFunction($id)'><div  id='flip-sec'><i class='fa fa-plus'></i></div></a></div></div>";
+                      
 
                     if (!empty($session_speaker)) {
                         $html .= "<p><span class='speaker-text'>{$session_speaker}</span>";
@@ -407,9 +433,9 @@ if (!class_exists('AgendashortCodes')):
                         }
 
                         $return = $wpdb->get_row( "SELECT ID FROM wp_posts WHERE post_title = '" . $session_speaker . "' && post_status = 'publish' && post_type = 'speaker' ", 'ARRAY_N' );
-                        $postid = $return[0];
-                        if( !empty($postid) ) {
-                            //$return = $postid;
+
+                        if( !empty($return) ) {
+                            $return = $postid;
                             $html .= "<a onclick='event_show(" . $postid . ")'' id='speakerinfo'><span class='session_speakerimg'><i class='fa fa-user' aria-hidden='true'></i></span></a></p>";
                         } 
 
@@ -453,25 +479,28 @@ if (!class_exists('AgendashortCodes')):
             global $Speaker;
             $id = $_POST['id'];
             $post_info = get_post($id);
-            $titles = $post_info->post_title;
-            $organisations = get_post_meta($id, 'organisation', true);
-            $designations = get_post_meta($id, 'designation', true);
-            $short_bios = get_post_meta($id, 'short_bio', true);
-            $logos = get_post_meta($id, 'meta-image', true);
-            if (!empty($logos)) {
-                $logo = $logos;
-            } else {
-                $logo = 0;
+            if (!empty($post_info)){
+              $titles = $post_info->post_title;
+                $organisations = get_post_meta($id, 'organisation', true);
+                $designations = get_post_meta($id, 'designation', true);
+                $short_bios = get_post_meta($id, 'short_bio', true);
+                $logos = get_post_meta($id, 'meta-image', true);
+                if (!empty($logos)) {
+                    $logo = $logos;
+                } else {
+                    $logo = 0;
+                }
+                if (has_post_thumbnail($id)) {
+                    $images = wp_get_attachment_image_src(get_post_thumbnail_id($id));
+                    $imgSrcc = $images[0];
+                } else {
+                    $imgSrcc = $Speaker->assetsUrl . 'images/demo.jpg';
+                }
+                $speakerinfo = $titles . "**" . $imgSrcc . "**" . $organisations . "**" . $designations . "**" . $short_bios . "**" . $logo;
+                echo $speakerinfo;
+                die();  
             }
-            if (has_post_thumbnail($id)) {
-                $images = wp_get_attachment_image_src(get_post_thumbnail_id($id));
-                $imgSrcc = $images[0];
-            } else {
-                $imgSrcc = $Speaker->assetsUrl . 'images/demo.jpg';
-            }
-            $speakerinfo = $titles . "**" . $imgSrcc . "**" . $organisations . "**" . $designations . "**" . $short_bios . "**" . $logo;
-            echo $speakerinfo;
-            die();
+            
         }
 
         function scriptsjs()

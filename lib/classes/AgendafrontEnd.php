@@ -30,6 +30,7 @@ if( !class_exists( 'AgendafrontEnd' ) ) :
             $ss = (isset($settings['speaker_size']) ? ($settings['speaker_size'] ? $settings['speaker_size'] : '' ) : '');
             $sa = (isset($settings['speaker_align']) ? ($settings['speaker_align'] ? $settings['speaker_align'] : 'none' ) : 'none');
             $sta = (isset($settings['textstylespeaker']) ? ($settings['textstylespeaker'] ? $settings['textstylespeaker'] : 'normal' ) : 'normal');
+            $dst = (isset($settings['sessiondesctab']) ? ($settings['sessiondesctab'] ? $settings['sessiondesctab'] : 'Closed' ) : 'Closed');
 
             /* speaker role setting layout1*/
             $src = (isset($settings['speaker_rolecolor']) ? ($settings['speaker_rolecolor'] ? $settings['speaker_rolecolor'] : '' ) : '');
@@ -121,6 +122,14 @@ if( !class_exists( 'AgendafrontEnd' ) ) :
             $html .= '.agenlayout2 .iso-th{';
             $html .= 'background-color: '.$thc.'!important;';
             $html .= '}';
+            if ( $dst == "Open"){
+            $html .= '.minusicondesc{';
+            $html .= 'display: block!important;';
+            $html .= '}';
+             $html .= '.plusicondesc{';
+            $html .= 'display: none!important;';
+            $html .= '}';
+            }
             
             $html .= (isset($settings['custom_css']) ? ($settings['custom_css'] ? "{$settings['custom_css']}" : null) : null );
 

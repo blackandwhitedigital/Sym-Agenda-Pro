@@ -182,6 +182,20 @@ $settings = get_option($Agenda->options['settings']);
                     <!-- end-->
 
                     <tr>
+                        <th scope="row"><label for="slug"><?php _e('Session Description', AGENDA_SLUG); ?></label></th>
+                        <td class="">
+                            <select name="sessiondesctab" id="sessiondesctab" type="text"
+                                        value="<?php echo(isset($settings['sessiondesctab']) ? ($settings['sessiondesctab'] ? $settings['sessiondesctab'] : 'Closed') : 'Closed'); ?>">
+                                    <option value=<?php
+                                    (isset($settings['sessiondesctab']) ? ($settings['sessiondesctab'] ? $settings['sessiondesctab'] : 'Closed' ) : 'Closed');?>><?php echo (isset($settings['sessiondesctab']) ? ($settings['sessiondesctab'] ? $settings['sessiondesctab'] : 'Closed') : 'Closed');?></option>
+                                    <option value="Open">Open</option>
+                                    <option value="Closed">Closed</option>
+                             </select>
+                        </td>
+                    </tr>
+
+
+                    <tr>
                         <th scope="row"><label
                                 for="bullet_point"><?php _e('Styling Bullet Points', AGENDA_SLUG); ?></label></th>
                         <td class="">
