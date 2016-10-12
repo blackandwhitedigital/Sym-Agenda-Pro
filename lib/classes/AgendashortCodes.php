@@ -278,9 +278,9 @@ if (!class_exists('AgendashortCodes')):
                             
                         }
                         $return = $wpdb->get_row( "SELECT ID FROM wp_posts WHERE post_title = '" . $session_speaker . "' && post_status = 'publish' && post_type = 'speaker' ", 'ARRAY_N' );
-
-                    if( !empty($return) ) {
-                        $postid = $return;
+                        $postid = $return[0];
+                    if( !empty($postid) ) {
+                        //$postid = $return;
                         $html .= "<a onclick='event_show(" . $postid . ")'' id='speakerinfo'><span class='session_speakerimg'><i class='fa fa-user' aria-hidden='true'></i></span></a></p>";
                     } 
                     }
@@ -407,9 +407,9 @@ if (!class_exists('AgendashortCodes')):
                         }
 
                         $return = $wpdb->get_row( "SELECT ID FROM wp_posts WHERE post_title = '" . $session_speaker . "' && post_status = 'publish' && post_type = 'speaker' ", 'ARRAY_N' );
-
-                        if( !empty($return) ) {
-                            $return = $postid;
+                        $postid = $return[0];
+                        if( !empty($postid) ) {
+                            //$return = $postid;
                             $html .= "<a onclick='event_show(" . $postid . ")'' id='speakerinfo'><span class='session_speakerimg'><i class='fa fa-user' aria-hidden='true'></i></span></a></p>";
                         } 
 
