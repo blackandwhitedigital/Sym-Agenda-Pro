@@ -275,7 +275,7 @@ if (!class_exists('AgendashortCodes')):
                         }
                        
                         if (strlen(trim($session_speakerrole))!=0){  
-                            $html .= "<span class='speaker-role'>{$session_speakerrole}</span>";
+                            $html .= " <span class='speaker-role'>{$session_speakerrole}</span>";
                         }else{ 
                         }
                         if ((!empty($session_speaker) || strlen(trim($session_speakerrole))!=0 )&& strlen(trim($session_speakerorg))!=0 ){
@@ -284,7 +284,7 @@ if (!class_exists('AgendashortCodes')):
                         }
                         if (strlen(trim($session_speakerorg))!=0){
                            
-                             $html .= "<span class='speaker-org'>{$session_speakerorg}</span></p>";
+                             $html .= " <span class='speaker-org'>{$session_speakerorg}</span></p>";
                        
                         }else{
                             
@@ -426,7 +426,7 @@ if (!class_exists('AgendashortCodes')):
                         }
                         if (strlen(trim($session_speakerorg))!=0){
                            
-                             $html .= "<span class='speaker-org'>{$session_speakerorg}</span></p>";
+                             $html .= " <span class='speaker-org'>{$session_speakerorg}</span></p>";
                        
                         }else{
                             
